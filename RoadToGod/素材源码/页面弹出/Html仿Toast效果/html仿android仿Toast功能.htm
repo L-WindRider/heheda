@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>仿android的Toast效果</title>
+<style>
+	.clsss{ background-image:url(1.jpg); font-size:12px}
+</style>
+<script>
+    function wddrs() {
+        Toast('未达到分享人数！', 3000);
+    }
+
+    //自定义弹框 
+function Toast(msg,duration){
+	duration=isNaN(duration)?3000:duration;
+	var m = document.createElement('div');
+	m.innerHTML = msg;
+	m.style.cssText="width:225px; min-width:150px;opacity:0.5; height:60px; color:#fff; line-height:60px; text-align:center; border-radius:5px; position:fixed; top:40%; left:40%; z-index:10; font-weight:bold; filter: alpha(opacity=80); background:#000;";
+    document.body.appendChild(m);
+	setTimeout(function() {
+		var d = 0.5;
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';
+        m.style.opacity = '0';
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);
+        document.getElementById('qqqqq').style.display = "none";
+	}, duration);
+	
+}
+
+</script> 
+</head>
+<body>
+<div onclick="Toast('操作失败',8000);">显示</div>
+<div onclick="wddrs()">显示</div>
+<div id="qqqqq">nihaodsfjsdkgjsdfkgksf</div>
+</body>
+</html>

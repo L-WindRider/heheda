@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jstree basic demos</title>
+	<style>
+	html { margin:0; padding:0; font-size:62.5%; }
+	body { max-width:800px; min-width:300px; margin:0 auto; padding:20px 10px; font-size:14px; font-size:1.4em; }
+	h1 { font-size:1.8em; }
+	.demo { overflow:auto; border:1px solid silver; min-height:100px; }
+	</style>
+	<link rel="stylesheet" href="dist/themes/default/style.min.css" />
+</head>
+<body>
+	<!-- 搜索框 -->
+ <div class="search_input">
+     <input type="text" id="search_ay"  /> 
+     <img src="/sfytj/dist/images/icon/ss_search.png" />
+  </div>
+
+<!-- 案由列表 -->
+<div class="reason_list">
+  <div id="treeview1" class="treeview">
+
+  </div>
+ </div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="dist/jstrestwo.js"></script>
+	<script>
+		var ay_mssys = 
+    [
+        {
+	        "id": "1",
+	        "name": "民事案由(2008版)",
+	        "state": {
+			            "opened": true,          //展示第一个层级下面的node
+			            "disabled": true         //该根节点不可点击
+	       			 },
+	        "children": 
+	        			[
+				        	{
+				            "id": "2",
+				            "name": "人格权纠纷",
+				            "children": 
+				            			[
+							            	{
+								                "id": "3",
+								                "name": "人格权纠纷",
+								                "children": [
+								                	{
+									                    "id": "4",
+									                    "name": "生命权、健康权、身体权纠纷",
+									                    "children": 
+									                    			[
+									                    				{
+													                        "id": "5",
+													                        "name": "道路交通事故人身损害赔偿纠纷"
+												                   		 }
+												                   	]
+												    }
+												 ]
+											}
+										]
+							}
+						]
+			}
+	]
+
+//core：整个jstree显示的核心，里面包括多种项配置：
+//data： 这里是使用json格式的数据；还可以使用html或者ajax请求等
+//plugins： 这个jstree引用了哪些插件
+//multiple : false  不可多选
+//tree change时事件
+	// data format demo
+	$("#treeview1").jstrestwo({
+            'core' : {
+                'data' : ay_mssys,
+            },
+            "plugins" : ["wholerow","checkbox","search"] 
+});
+//changed.jstree,jstree改变时发生的事件，类似的还有select_node.jstree等，api中有。
+
+//输入框输入定时自动搜索
+var to = false;
+$('#search_ay').keyup(function () {
+    if(to) {
+      clearTimeout(to); 
+    }
+
+    to = setTimeout(function () {
+        $('#treeview1').jstrestwo(true).search($('#search_ay').val());
+
+    }, 250);
+});
+
+	</script>
+</body>
+</html>

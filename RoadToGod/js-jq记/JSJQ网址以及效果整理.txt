@@ -1,0 +1,20 @@
+教程：http://jquery.cuishifeng.cn/element.html
+     http://www.runoob.com
+     http://www.w3school.com.cn
+1、JQ各种滑动效果  http://www.runoob.com/jquery/eff-animate.html
+                http://www.w3school.com.cn/jquery/effect_animate.asp
+2、滑动隐藏
+水平方向滑动隐藏
+  jQuery('#divFloatToolsView').animate({width: '300px', opacity: 'hide'}, 'normal',function(){ jQuery('#divFloatToolsView').hide();});
+水平方向滑动显示
+  jQuery('#divFloatToolsView').animate({width: '300px', opacity: 'show'}, 'normal',function(){ jQuery('#divFloatToolsView').show();});
+  当然 把width 变成 height 就是垂直显示或隐藏了
+3、网页离开事件
+   JS window.onbeforeunload = function(event) { return confirm("确定离开此页面吗？"); }
+   JQ //绑定beforeunload事件$(window).bind('beforeunload',function(){return '您输入的内容       尚未保存，确定离开此页面吗？';});
+   解除绑定，一般放在提交触发事件中$(window).unbind('beforeunload');
+4、html(替换)、prepend(节点前后面)、append(节点内后面)、before(节点前面)、after(节点后面)
+5、获取当前html alert($("<p>").append($(this).clone()).html());
+   $(this).prop("outerHTML")
+6、$("div").position().left;获取left的值
+   

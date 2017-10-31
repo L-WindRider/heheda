@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'/>
+<title>jQuery网页瀑布流插件masonry - 站长素材</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<div style="background:#FFF; padding:20px 0">
+<!--效果开始-->
+<div class="qx_list" id="container">
+<ul>
+ <li class="box"><div class="qx_picBox"><img src="images/0.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/1.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/3.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/2.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/4.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/5.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/6.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/7.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/8.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/9.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/10.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/11.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/12.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/14.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/15.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/16.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/17.jpg"/></div></li>
+ <li class="box"><div class="qx_picBox"><img src="images/18.jpg"/></div></li>
+</ul>
+<div class="clear"></div>
+</div>
+<script type="text/javascript" src="js/jquery.masonry.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $container = $('#container');
+	$container.imagesLoaded(function(){
+		$container.masonry({
+			itemSelector: '.box',
+			//columnWidth: 80 //每两列之间的间隙为5像素
+		});
+	});
+});
+</script>
+<!--End-->
+</div>
+</body>
+</html>

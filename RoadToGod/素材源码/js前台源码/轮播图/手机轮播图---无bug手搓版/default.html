@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>轮播图</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <script type="text/javascript" src="js/touchslide.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+<style type="text/css">
+    body{margin: 0;background: #dddddd;}
+    ul,li,p{-webkit-margin-before: 0em;-webkit-margin-after: 0em;-webkit-padding-start: 0px;}
+    /*幻灯片广告*/
+    .focus{ width:100%;; height:auto;  margin:0 auto; position:relative; overflow:hidden;   }
+    .focus .hd{ width:100%; height:0.3rem;  position:absolute; z-index:1; bottom:0; text-align:center;  }
+    .focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:5px; background-color:rgba(51,51,51,0.5);}
+    .focus .hd ul li{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; }
+    .focus .hd ul .on{ background:#ec5151;  }
+    .focus .bd{ position:relative; z-index:0; }
+    .focus .bd li img{ width:100%;  height:auto; }
+    .focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */ }
+</style>
+</head>
+<body>
+<div id="focus" class="focus">
+    <div class="hd">
+        <ul></ul>
+    </div>
+    <div class="bd">
+        <ul>
+            <li><a><img src='images/1.jpg'/></a></li>
+            <li><a><img src='images/3.jpg'/></a></li>
+            <li><a><img src='images/3.jpg'/></a></li>
+            <li><a><img src='images/4.jpg'/></a></li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    //轮播
+    TouchSlide({
+        slideCell: "#focus",
+        titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+        mainCell: ".bd ul",
+        effect: "leftLoop",
+        autoPlay: true,//自动播放
+        autoPage: true //自动分页
+    });
+</script>
+</body>
+</html>

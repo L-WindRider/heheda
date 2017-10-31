@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+    <h2>为 JSON 字符串创建对象</h2>
+    <p id="demo"></p>
+    <script type="text/javascript">
+        var jsonobj = [{ "name": "呵呵哒", "nl": "21", "电话": 13401336230 }];
+      //  jsonobj[0].电话 = 13401337895;//json更改数据
+        document.getElementById("demo").innerHTML = jsonobj[0].电话;
+    </script>
+
+
+    <h2>从 JSON 字符串中创建对象</h2>
+    <p>
+        名: <span id="fname"></span><br>
+        姓: <span id="lname"></span><br>
+    </p>
+    <script>
+var txt = '{"employees":[' +
+'{"firstName":"John","lastName":"Doe" },' +
+'{"firstName":"Anna","lastName":"Smith" },' +
+'{"firstName":"Peter","lastName":"Jones" }]}';
+
+var obj = eval ("(" + txt + ")");
+
+document.getElementById("fname").innerHTML=obj.employees[1].firstName
+document.getElementById("lname").innerHTML=obj.employees[1].lastName
+    </script>
+</body>
+</html>

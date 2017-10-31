@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+ <meta charset="utf-8">
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+<canvas id="lh_canvas" width="1200" height="600" style="border:1px solid #CCC;">
+不支持canvas
+</canvas>
+</body>
+<script type="text/javascript">
+    window.onload = function () {
+        var canvas = document.getElementById("lh_canvas");
+        canvas.width = 700;
+        canvas.height = 700;
+        var context = canvas.getContext("2d");
+
+        context.beginPath()//开始新的绘制
+        context.moveTo(100, 100); //从坐标（100，100）
+        context.lineTo(600, 600); //到坐标（600，600）
+        context.lineTo(100, 600); //再到坐标（100，600）
+        context.lineTo(100, 100); //再到坐标（100，100）
+        context.fillStyle = "rgb(2,100,30)"//填充颜色
+        context.fill(); //填充输出
+        context.lineWidth = 5; //线条像素
+        context.strokeStyle = "#CCC"; //线条颜色
+        context.stroke(); //笔画绘制输出
+        context.closePath()//结束新的绘制
+
+        context.beginPath()//开始新的绘制
+        context.moveTo(200, 100); //从坐标（100，100）
+        context.lineTo(700, 600); //到坐标（600，600）
+        context.lineWidth = 10; //线条像素
+        context.strokeStyle = "red"; //线条颜色
+        context.stroke(); //笔画绘制输出
+        context.closePath()//结束新的绘制
+
+        context.beginPath()//开始新的绘制
+        context.lineWidth = 5; //线条像素
+        context.strokeStyle = "#EEE"; //线条颜色
+        /*坐标300x300为圆心，200为半径画弧，从0到1.5个PI，默认为false，true为逆时针*/
+        context.arc(300, 300, 200, 0, 1.5 * Math.PI, true);
+        context.stroke(); //笔画绘制输出
+        context.closePath()//结束新的绘制
+
+       
+        context.lineWidth = 5; //线条像素
+        context.strokeStyle = "#EEE"; //线条颜色
+        /*坐标300x300为圆心，200为半径画弧，从0到1.5个PI，默认为false，true为逆时针*/
+        for (var i = 0; i < 10; i++) {
+            context.beginPath()//开始新的绘制
+            context.arc(50+i*10, 100, 200, 0, 2 * Math.PI*(i+1)/10);
+            context.stroke(); //笔画绘制输出
+            context.closePath()//结束新的绘制
+        }
+    }
+</script>
+</html>

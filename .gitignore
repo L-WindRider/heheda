@@ -1,0 +1,17 @@
+#全部目录
+node_modules/
+dist/
+*.project
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+*npm-debug.log
+*yarn-debug.log
+*yarn-error.log
+
+#本目录
+.DS_Store
+.idea
+
+# 子目录

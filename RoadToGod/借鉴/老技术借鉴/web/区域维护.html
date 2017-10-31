@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>区域维护</title>
+<link href="../css/css.css" rel="stylesheet" type="text/css" />
+<script type="text/JavaScript">
+<!--
+function MM_jumpMenu(targ,selObj,restore){ //v3.0
+  eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
+  if (restore) selObj.selectedIndex=0;
+}
+//-->
+</script>
+
+<script type="text/javascript">
+function BtHide(id){var Div = document.getElementById(id);if(Div){Div.style.display="none"}}
+function BtShow(id){var Div = document.getElementById(id);if(Div){Div.style.display="block"}}
+
+function BtTabRemove(index,head,divs) {
+	var tab_heads = document.getElementById(head);
+	if (tab_heads) {
+	var lis = tab_heads.getElementsByTagName("li"); var as = tab_heads.getElementsByTagName("a");
+	for(var i=0;i<as.length;i++){lis[i].className = "";BtHide(divs+"_"+i);if (i==index) {lis[i].className = "current";}}
+	BtShow(divs+"_"+index)}
+}
+
+function BtTabOn(head,divs){
+	var tab_heads=document.getElementById(head);
+	if (tab_heads) {
+	BtTabRemove(0,head,divs);
+	var alis=tab_heads.getElementsByTagName("a");
+	for(var i=0;i<alis.length;i++) {
+	alis[i].num=i;
+	alis[i].onclick = function(){BtTabRemove(this.num,head,divs);this.blur();return false;}
+	alis[i].onfocus = function(){BtTabRemove(this.num,head,divs)}}}
+}
+
+function BtZebraStrips(id,tag) {
+	var ListId = document.getElementById(id);
+	if(ListId){
+	var tags  = ListId.getElementsByTagName(tag);
+	for(var i=0;i<tags.length;i++) {
+	tags[i].className   += " barry"+i%2;
+	tags[i].onmouseover = function(){this.className += " hover"}
+	tags[i].onmouseout  = function(){this.className = this.className.replace(" hover","")}}}
+}
+
+function BtPopload(showId){
+	var h = Math.max(document.documentElement.scrollHeight,document.documentElement.clientHeight) + 'px';
+	var w = document.documentElement.scrollWidth + 'px';
+	var popCss = "background:#000;opacity:0.1;filter:alpha(opacity=10);position:absolute;left:0;top:0;overflow:hidden;"
+	var exsit = document.getElementById("popBox");
+	if (!exsit) {
+		pop_Box = document.createElement("div");pop_Box.id = "popBox";
+		document.getElementsByTagName("body")[0].appendChild(pop_Box);
+		pop_Box.style.cssText = popCss;pop_Box.style.zIndex = "10";
+		pop_Box.style.height = h;pop_Box.style.width = w;
+		
+		pop_Iframe = document.createElement("iframe");pop_Iframe.id = "popIframe";
+		document.getElementsByTagName("body")[0].appendChild(pop_Iframe);	
+		pop_Iframe.style.cssText = popCss;pop_Iframe.style.zIndex = "9";
+		pop_Iframe.style.height = h;pop_Iframe.style.width = (parseInt(w)-5)+"px";
+	}
+	BtShow("popIframe");BtShow("popBox");BtShow(showId);
+	pop_Win = document.getElementById(showId);
+	pop_Win.style.position = "absolute";
+	pop_Win.style.zIndex = "11";
+	pop_Win.style.top = document.documentElement.scrollTop+document.documentElement.clientHeight/2-pop_Win.offsetHeight/2+ 'px';
+	pop_Win.style.left = (document.documentElement.clientWidth/2-pop_Win.offsetWidth/2) + 'px';
+}
+function BtPopShow(Bid,Did) { 
+	var UploadBtn = document.getElementById(Bid);
+	if (UploadBtn){UploadBtn.onclick = function() {BtPopload(Did);return false;}}	
+}
+function BtPopHide(Bid,Did) { 
+	var UploadBtn = document.getElementById(Bid);
+	if (UploadBtn){UploadBtn.onclick = function() {BtHide(Did);BtHide("popBox");BtHide("popIframe");return false;}}	
+}
+</script>
+
+</head>
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="41" style="line-height:41px;" background="../images/right_01.gif"><div style="width:41px; height:41px; background-image:url(../images/cent_01.gif); float:left;"></div>
+      区域维护</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-left:#c4dbe2 1px solid; border-bottom:#c4dbe2 1px solid;">
+  <tr>
+    <td height="88" background="../images/right_t_09.gif"><table width="800" height="36" border="0" cellpadding="0" cellspacing="2" style="margin-left:28px; margin-top:2px;">
+        <tr>
+          <td width="60" align="right">区域名称</td>
+          <td><input type="text" name="textfield4" class="wbk" /></td>
+          <td><input name="submit23322" type="submit" class="inp_L1" style="margin-right:8px;" onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'" value="查询" />
+            <input name="submit233222" type="submit" class="inp_L1" style="margin-right:8px;" onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'" value="重置" />
+            <input name="submit23" type="submit" class="inp_L1" style="margin-right:8px;" onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'" value="新增" id="open" />
+            <input name="submit23223" type="submit" class="inp_L1" style="margin-right:8px;" onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'" value="删除" /></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" class="table_bk">
+  <thead>
+    <tr style="background-color:#e8f1f4; color:#333;">
+      <td width="30" align="center"><input type="checkbox" name="checkbox" value="checkbox" /></td>
+      <td align="center">区域名</td>
+      <td align="center">区域编号</td>
+      <td align="center">负责人</td>
+      <td align="center">联系电话</td>
+      <td width="30" align="center">编辑</td>
+    </tr>
+  </thead>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox2" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr bgcolor="#f1f1f1">
+    <td align="center"><input type="checkbox" name="checkbox3" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox4" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox5" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox6" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox7" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+  <tr>
+    <td align="center"><input type="checkbox" name="checkbox8" value="checkbox" /></td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">一号楼网关</td>
+    <td align="center">80A/220V </td>
+    <td align="center"><img src="../images/bj.gif" width="12" height="12" /></td>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" class="table_fy">
+  <tr>
+    <td align="center">
+	<table width="528" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="200" align="left">
+		<a href="#"><img src="../images/y_01.gif" width="16" height="16" border="0" style="vertical-align:middle;" /></a>
+		<a href="#"><img src="../images/y_02.gif" width="16" height="16" border="0" style="vertical-align:middle;" /></a>
+		 Page <span class="font01">1</span> of <span class="font01">12 
+		 <a href="#"><img src="../images/y_03.gif" width="16" height="16" border="0" style="vertical-align:middle;" /></a>
+		 <a href="#"><img src="../images/y_04.gif" width="16" height="16" border="0" style="vertical-align:middle;" /></a>
+		 </span>
+		 </td>
+        <td width="220" align="center">每页显示记录条数
+          <select name="menu1" onchange="MM_jumpMenu('parent',this,0)" style="width:47px;" >
+              <option>10</option>
+              <option>20</option>
+              <option>30</option>
+          </select></td>
+        <td align="left">跳转
+          <input type="text" name="textfield5" style="width:28px;" />
+          <a href="#"><img src="../images/y_05.gif" width="16" height="16" border="0" style="vertical-align:middle;"/></a></td>
+      </tr>
+    </table>
+	</td>
+  </tr>
+</table>
+<script type="text/javascript">BtZebraStrips("hot_car","tr");BtZebraStrips("ul","li")</script>
+
+<div class="pop" id="pop">
+<table width="520" height="218" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="200" valign="top" background="../images/tc_top.gif">
+	<table width="520" height="21" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td valign="bottom" style="font-size:12px; text-align:center; color:#FFFFFF; font-weight:bold; line-height:21px;">区域维护新增</td>
+        <td width="30">
+		<a href="../history.go(0)">
+		<input type="submit" style="color:#FF0000; width:30px; height:21px; border:0; font-size:12px; display：inline; background-image:url(../images/tc.gif); background-position:center; background-repeat:no-repeat; cursor:hand"
+	id="cancel" value="" /></a>	</td>
+      </tr>
+    </table>
+	<table width="520" height="110" border="0" align="center" cellpadding="0" cellspacing="0" style=" margin-top:18px;">
+      <tr>
+        <td valign="top">
+		<table width="520" border="0" align="center" cellpadding="0" cellspacing="2" style="margin-top:2px;">
+            <tr>
+              <td width="120" height="32" align="right">区域名</td>
+              <td width="170"><input type="text" name="textfield" class="wbk" /></td>
+              <td width="60" align="right">区域位置</td>
+              <td width="170"><input type="text" name="textfield2" class="wbk" /></td>
+            </tr>
+            <tr>
+              <td height="32" align="right">负责人</td>
+              <td><input type="text" name="textfield3" class="wbk" /></td>
+              <td align="right">联系电话</td>
+              <td><input type="text" name="textfield4" class="wbk" /></td>
+            </tr>
+          </table>
+            </td>
+      </tr>
+    </table>
+	<table width="520" border="0" align="center" cellpadding="0" cellspacing="0" style="margin-top:2px;">
+      <tr>
+        <td height="32" align="center"><input name="submit243" type="submit" class="inp_L1" style="margin-right:29px;" onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'"onclick="history.go(0)" value="保 存" />
+            <input name="submit2322" type="submit" class="inp_L1"  onmouseover="this.className='inp_L2'" onmouseout="this.className='inp_L1'" id="close" value="取 消" /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="18" background="../images/tc_bot.gif">&nbsp;</td>
+  </tr>
+</table>
+<script type="text/javascript">BtPopShow("open","pop");BtPopHide("close","pop");BtPopHide("cancel","pop")</script>
+</div>
+</body>
+</html>

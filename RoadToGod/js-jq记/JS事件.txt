@@ -1,0 +1,194 @@
+鼠标单击事件( onclick ）
+onclick是鼠标单击事件，当在网页上单击鼠标时，就会发生该事件。同时onclick事件调用的程序块就会被执行，通常与按钮一起使用。
+比如，我们单击按钮时，触发 onclick 事件，并调用两个数和的函数add2()
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>单击事件 </title>
+<script type="text/javascript">
+  function openwin(){
+     window.open('http://www.imooc.com','_blank','height=600,width=400,top=100,toolbar=no,left=0,menubar=no,scrollbars=no,status=no');}
+</script>
+</head>
+<body>
+  <form>
+    <input name="点击我" type="button" value="点击我" onclick="openwin()"/>
+  </form>
+</body>
+</html>
+
+
+鼠标经过事件（onmouseover）
+鼠标经过事件，当鼠标移到一个对象上时，该对象就触发onmouseover事件，并执行onmouseover事件调用的程序。
+现实鼠标经过"确定"按钮时，触发onmouseover事件，调用函数info()，弹出消息框，
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 鼠标经过事件 </title>
+<script type="text/javascript">
+    function message(){
+      confirm("请输入密码后，再单击确定!"); }
+</script>
+</head>
+<body>
+<form>
+密码:<input name="password" type="password" >
+<input name="确定" type="button" value="确定" onmouseover="message()"/>
+</form>
+</body>
+</html>
+
+
+鼠标移开事件（onmouseout）
+鼠标移开事件，当鼠标移开当前对象时，执行onmouseout调用的程序。
+当把鼠标移动到"登录"按钮上，然后再移开时，触发onmouseout事件，调用函数message()
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>鼠标移开事件 </title>
+<script type="text/javascript">
+  function message(){
+    alert("不要移开，点击后进行慕课网!"); }
+</script>
+</head>
+<body>
+<form>
+  <a href="http://www.imooc.com" onmouseout="message()">点击我</a>
+</form>
+</body>
+</html>
+
+
+光标聚焦事件（onfocus）
+当网页中的对象获得聚点时，执行onfocus调用的程序就会被执行。
+如下代码, 当将光标移到文本框内时，即焦点在文本框内，触发onfocus 事件，并调用函数message()
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> 光标聚焦事件 </title>
+  <script type="text/javascript">
+    function message(){
+	  alert("请选择，您现在的职业！");
+	}
+  </script>
+</head>
+<body>
+请选择您的职业：<br>
+  <form>
+    <select name="career" onfocus="message()"> 
+      <option>学生</option> 
+      <option>教师</option> 
+      <option>工程师</option> 
+      <option>演员</option> 
+      <option>会计</option> 
+    </select> 
+  </form>
+</body>
+</html>
+
+
+失焦事件（onblur）
+onblur事件与onfocus是相对事件，当光标离开当前获得聚焦对象的时候，触发onblur事件，同时执行被调用的程序。
+如下代码, 网页中有用户和密码两个文本框。当前光标在用户文本框内时（即焦点在文本框），在光标离开该文本框后（即失焦时），触发onblur事件，并调用函数message()。
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 失焦事件 </title>
+<script type="text/javascript">
+  function message(){
+    alert("请确定已输入密码后，在移开!"); }
+</script>    
+</head>
+<body>
+  <form>
+   用户:<input name="username" type="text" value="请输入用户名！" >
+   密码:<input name="password" type="text" value="请输入密码！" onblur="message()">
+  </form>
+</body>
+</html>
+
+
+内容选中事件（onselect）
+选中事件，当文本框或者文本域中的文字被选中时，触发onselect事件，同时调用的程序就会被执行。
+如下代码,当选中用户文本框内的文字时，触发onselect 事件，并调用函数message()。
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 内容选中事件 </title>
+<script type="text/javascript">
+  function message(){
+    alert("您触发了选中事件！"); }
+</script>    
+</head>
+<body>
+  <form>
+  个人简介：<br>
+   <textarea name="summary" cols="60" rows="5" onselect="message()">请写入个人简介，不少于200字！</textarea>
+  </form>
+</body>
+</html>
+
+文本框内容改变事件（onchange）
+通过改变文本框的内容来触发onchange事件，同时执行被调用的程序。
+如下代码,当用户将文本框内的文字改变后，弹出对话框“您改变了文本内容！”。
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 文本框内容改变事件 </title>
+<script type="text/javascript">
+  function message(){
+    alert("您改变了文本内容！"); }
+</script>    
+</head>
+<body>
+  <form>
+  个人简介：<br>
+   <textarea name="summary" cols="60" rows="5"onchange="message()">请写入个人简介，不少于200字！</textarea>
+  </form>
+</body>
+</html>
+
+
+加载事件（onload）
+事件会在页面加载完成后，立即发生，同时执行被调用的程序。
+注意：1. 加载页面时，触发onload事件，事件写在<body>标签内。
+      2. 此节的加载页面，可理解为打开一个新页面时。
+如下代码,当加载一个新页面时，弹出对话框“加载中，请稍等…”
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 加载事件 </title>
+<script type="text/javascript">
+  function message(){
+    alert("加载中，请稍等…"); }
+</script>    
+</head>
+<body onload="message()">
+  欢迎学习JavaScript。
+</body>
+</html>
+
+
+卸载事件（onunload）
+当用户退出页面时（页面关闭、页面刷新等），触发onUnload事件，同时执行被调用的程序。
+注意：不同浏览器对onunload事件支持不同。
+如下代码,当退出页面时，弹出对话框“您确定离开该网页吗？”。
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title> 卸载事件 </title>
+<script type="text/javascript">   
+     window.onunload = onunload_message;   
+     function onunload_message(){   
+        alert("您确定离开该网页吗？");   
+    }   
+</script>   
+</head>
+<body>
+  欢迎学习JavaScript。
+</body>
+</html>

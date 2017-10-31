@@ -1,0 +1,11 @@
+﻿.default{ width:100%; float:left;}
+.default_lianglie{ width:96%; float:left; padding:2%; background-color:#f8f8f8;}
+.default_lianglie a .default_liangliep1{ width:49%; float:left; margin-right:1%;}
+.default_lianglie a .default_liangliep2{ width:49%; float:left; margin-left:1%;}
+.default_lianglie a p img{ width:99%; float:left; border: 1px solid #f3f3f3;}
+
+.default_sanlie{ width:96%; float:left; padding:2%; background-color:#f8f8f8;}
+.default_sanlie a .default_sanliep1{ width:32.6%; float:left; margin-right:1.1%;}
+.default_sanlie a .default_sanliep2{ width:32.6%; float:left;}
+.default_sanlie a .default_sanliep3{ width:32.6%; float:left; margin-left:1.1%;}
+.default_sanlie a p img{ width:99%; float:left; border: 1px solid #f3f3f3;}

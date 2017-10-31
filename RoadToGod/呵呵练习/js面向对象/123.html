@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html>
+ <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>配灯</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <script id="jquery_183" type="text/javascript" class="library" src="js/jquery-1.8.3.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="css/lh_peideng.css">
+</head>  
+<body>
+ <div id="fullScreen">
+  <div  class="lh_pdau">
+  <div class="lh_pdzuo"></div><!--左侧空白处遮盖-->
+  <div class="lh_pdyou"></div><!--右侧空白处遮盖-->
+    <div  class="lh_pd">
+      <div id="lh_pdd1" class="lh_pdd1">
+      <div class="lh_pdd7"></div><!--底层透明白色，纯粹公共调用-->
+          <div id="lh_pdd1d" class="hide">
+              <img src="" />
+              <div id="rRightDown" style="right:0; bottom:0;"> </div>
+              <div id="rLeftDown" style="left:0; bottom:0;"> </div>
+              <div id="rRightUp" style="right:0; top:0;"> </div>
+              <div id="rLeftUp" style="left:0; top:0;"> </div>
+              <div id="rRight" style="right:0; top:50%;margin-top:-5px;"> </div>
+              <div id="rLeft" style="left:0; top:50%;margin-top:-5px;"> </div>
+              <div id="rUp" style="top:0; left:50%;margin-left:-5px;"> </div>
+              <div id="rDown" style="bottom:0;left:50%;margin-left:-5px;"></div>
+          </div>
+        <img id="lh_pdd1img" class="lh_pdd1img" src="images/bpdbbj.jpg">
+      </div>
+      <div class="lh_pdd2">
+      <!--背景选择-->
+      <span id="lh_pdbjyc1">隐藏界面</span>
+      <!--<div class="lh_pdbjxzgc"></div>-->
+      <div class="lh_pdbjxz">
+        <p >背景选择</p>
+        <div>
+        <p>
+          <img class="lh_lsbj" name="111" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="112" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="113" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="114" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="115" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="116" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="117" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="118" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="119" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1110" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1111" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1112" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1113" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1114" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1115" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1116" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1117" src="images/pdbj.jpg">
+          <img class="lh_lsbj" name="1118" src="images/pdbj.jpg">
+          </p>
+        </div>
+      </div>
+      <!--商品选择-->
+      <span id="lh_pdbjyc2">隐藏界面</span>
+      <!--<div class="lh_pdspxzgc"></div>-->
+      <div class="lh_pdspxz">
+        <p >商品选择</p>
+        <div>
+        <p>
+          <img class="lh_lssp" name="121" src="images/lamp.jpg">
+          <img class="lh_lssp" name="122" src="images/lamp.jpg">
+          <img class="lh_lssp" name="123" src="images/lamp.jpg">
+          <img class="lh_lssp" name="124" src="images/lamp.jpg">
+          <img class="lh_lssp" name="125" src="images/lamp.jpg">
+          <img class="lh_lssp" name="126" src="images/lamp.jpg">
+          <img class="lh_lssp" name="127" src="images/lamp.jpg">
+          <img class="lh_lssp" name="128" src="images/lamp.jpg">
+          <img class="lh_lssp" name="129" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1210" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1211" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1212" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1213" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1214" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1215" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1216" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1217" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1218" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1219" src="images/lamp.jpg">
+          <img class="lh_lssp" name="1220" src="images/lamp.jpg">
+          </p>
+        </div> 
+      </div>
+      </div>
+      <!--功能条-->
+        <div class="lh_pdd4">
+            <p class="addCart"><span class="lh_pdd4p2"></span><label></label><img src="images/pdgnt1.png"></p>
+
+            <p>
+                <span class="lh_pdd4p1"><label class="lh_pdd4p11"><span onclick="lh_xswdsc()">我的收藏</span></label></span>
+                <span class="lh_pdd4p2"></span><label style="padding: 10px; margin: -10px 0px 0px -10px; display: none;"></label><img src="images/pdgnt2.png">
+            </p>
+
+            <p>
+                <span class="lh_pdd4p1"><label class="lh_pdd4p11"><span onclick="lh_xsspsx()">商品</span></label></span>
+                <span class="lh_pdd4p2"></span><label ></label><img src="images/pdgnt3.png">
+            </p>
+
+            <p onclick="lh_baocun()"><span class="lh_pdd4p1"></span><span class="lh_pdd4p2"></span><label></label><img src="images/pdgnt4.png"></p>
+
+            <p>
+                <span class="lh_pdd4p1"><label class="lh_pdd4p11"><span onclick="lh_bjss()">背景</span></label><label class="lh_pdd4p12"><span onclick="lh_spss()">商品</span></label></span>
+                <span class="lh_pdd4p2"></span><label></label><img src="images/pdgnt5.png">
+            </p>
+
+            <p onclick="lh_chongzhi()"><span class="lh_pdd4p1"></span><span class="lh_pdd4p2"></span><label></label><img src="images/pdgnt6.png"></p>
+
+            <p id="fullScreenBtn"><span class="lh_pdd4p1"></span><span class="lh_pdd4p2"></span><label></label><img src="images/pdgnt7.png"></p>
+        </div>
+     
+     
+      
+      <div class="lh_pdd5">
+        <div class="lh_pdjt1"><img src="images/pdgt1.png"></div>
+        <div class="lh_pdd51w"><!--外框-->
+        <div class="lh_pdd51n" style="margin-left:0px;">
+        <div class="lh_pdd51n1"><!--内框背景历史-->
+          <p class="lh_pdd51n1d"><img class="lh_lsbj" name="111" src="images/pdbj.jpg"><img class="lh_bx" src="images/x.jpg"></p>
+          <p class="lh_pdd51n1d"><img class="lh_lsbj" name="112" src="images/pdbj.jpg"><img class="lh_bx" src="images/x.jpg"></p>
+        </div>
+        <div class="lh_pdd51n2 hide" style="margin-left:0px;"><!--内框商品历史-->
+          <div class="lh_pdd51n2d">
+            <div class="lh_pdht1">
+            <div class="lh_pdht1d">
+            <img src="images/lamp.jpg">
+            <p>品牌/欧普照明</p><p>风格/中式简约</p><p>材质/竹</p><p>规格/650X200厘米</p><p class="lh_pdht1p1">￥550.00</p>
+            <p class="lh_pdht1p2"><a href="">更多信息</a></p><p class="lh_pdht1p3">加入购物车</p>
+            </div>
+             <div class="lh_pdht1sj"><span></span></div>
+            </div>
+            <div class="lh_pdht2"><img class="lh_lssp" name="121" src="images/lamp.jpg"><img class="lh_x" src="images/x.jpg" ></div>
+          </div>
+          <div class="lh_pdd51n2d">
+            <div class="lh_pdht1">
+            <div class="lh_pdht1d">
+            <img src="images/lamp.jpg">
+            <p>品牌/欧普照明</p><p>风格/中式简约</p><p>材质/竹</p><p>规格/650X200厘米</p><p class="lh_pdht1p1">￥550.00</p>
+            <p class="lh_pdht1p2"><a href="">更多信息</a></p><p class="lh_pdht1p3">加入购物车</p>
+            </div>
+             <div class="lh_pdht1sj"><span></span></div>
+            </div>
+            <div class="lh_pdht2"><img class="lh_lssp" src="images/lamp.jpg"><img class="lh_x" src="images/x.jpg"></div>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="lh_pdjt2"><img src="images/pdgt2.png"></div>
+      </div>
+      <div class="lh_pdd6 hide"><input type="text" placeholder="" name=""><img src="images/pdss.png"></div>
+      
+      <!--*********购物车开始***************-->
+      <div class="lh_pdd8">
+      <div class="lh_pdd8d1"><a href="javascript:lh_ycgwc()"><img src="images/x.jpg"></a></div>
+      <div class="lh_pdd8d2">
+          <img src="images/pdwugwc.png" class="lh_pdwugwc" /><!-----------------新增------------------>
+          <div class="lh_pdd8d2n">
+      <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+      </div>
+      </div>
+       <div class="lh_pdd8d3">
+         <div><p><span>共：<label>4</label>件商品</span><br><span>共计：<label>2000</label>元</span></p>
+         <p>去结算</p></div>
+       </div> 
+      </div>
+      <!--*********购物车结束标***************-->
+      <!--*********收藏开始***************-->
+      <div class="lh_pdd9" style="width:0%;">
+      <div class="lh_pdd8d1"><a href="javascript:lh_ycwdsc()"><img src="images/x.jpg"></a></div>
+      <div class="lh_pdd8d2">
+          <img src="images/pdwusc.png" class="lh_pdwusc" /><!-----------------新增------------------>
+          <div class="lh_pdd8d2n">
+      <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+        <div><img src="images/lamp.jpg"><!--单个开始-->
+        <p><span>吊灯/650X660厘米</span><span>￥599.00x1</span></p><img class="lh_pdgwcsc" src="images/pdgwcsc.jpg">
+        </div><!--单个结束-->
+      </div>
+      </div>
+       <div class="lh_pdd9d3"><p>清空</p></div>
+       </div> 
+      </div>
+      <!--*********收藏结束标***************-->
+      <!--*********背景筛选开始标***************-->
+      <div class="lh_pdd10">
+        <div class="lh_pdd10d1">高级搜索背景<a href="javascript:lh_ycbjsx()"><img src="images/x.jpg"></a></div>
+        <div class="lh_pdd10d2">
+        <p>
+         <!--<span name="11">吊灯<label>X</label></span>
+         <span name="21">吊灯<label>X</label></span>-->
+        </p>
+        <span class="lh_pdd10d2qk">清空</span></div>
+        <div class="lh_pdd10d3">
+          <div class="lh_pdd10d31"><!--一级分类-->
+            <p class="lh_pdd10d31p">类型<span>></span></p>
+            <p>价格<span>></span></p>
+            <p>风格<span>></span></p>
+            <p>材质<span>></span></p>
+            <p>空间<span>></span></p>
+            <p>品牌<span>></span></p>
+          </div>
+          <div class="lh_pdd10d32"><!--二级分类-->
+            <div class="" style="display:block;">
+              <p name="11">吊灯</p>
+              <p name="12">吊灯</p>
+              <p name="13">吊灯</p>
+              <p name="14">吊灯</p>
+              <p name="15">吊灯</p> 
+            </div>
+            <div class="">
+              <p name="21">0-1000元</p>
+              <p name="22">1000-2999元</p>
+              <p name="23">3000-4999元</p>
+              <p name="24">5000-6999元</p>
+              <p name="25">7000-9999元</p>
+            </div>
+            <div class="">
+              <p name="31">吊灯</p>
+              <p name="32">吊灯</p>
+              <p name="33">吊灯</p>
+              <p name="34">吊灯</p>
+              <p name="35">吊灯</p> 
+            </div>
+          </div>
+        </div>
+        <div class="lh_pdd10d4"><p>确定</p></div>
+      </div>
+      <!--*********背景筛选结束标***************-->
+       <!--*********商品筛选开始标***************-->
+      <div class="lh_pdd11">
+        <div class="lh_pdd11d1">高级搜索商品<a href="javascript:lh_ycspsx()"><img src="images/x.jpg"></a></div>
+        <div class="lh_pdd11d2">
+        <p>
+        </p>
+        <span class="lh_pdd11d2qk">清空</span></div>
+        <div class="lh_pdd11d3">
+          <div class="lh_pdd11d31"><!--一级分类-->
+            <p class="lh_pdd11d31p">类型<span>></span></p>
+            <p>价格<span>></span></p>
+            <p>风格<span>></span></p>
+            <p>材质<span>></span></p>
+            <p>空间<span>></span></p>
+            <p>品牌<span>></span></p>
+          </div>
+          <div class="lh_pdd11d32"><!--二级分类-->
+            <div class="" style="display:block;">
+              <p name="11">吊灯</p>
+              <p name="12">吊灯</p>
+              <p name="13">吊灯</p>
+              <p name="14">吊灯</p>
+              <p name="15">吊灯</p> 
+            </div>
+            <div class="">
+              <p name="21">0-1000元</p>
+              <p name="22">1000-2999元</p>
+              <p name="23">3000-4999元</p>
+              <p name="24">5000-6999元</p>
+              <p name="25">7000-9999元</p>
+            </div>
+            <div class="">
+              <p name="31">吊灯</p>
+              <p name="32">吊灯</p>
+              <p name="33">吊灯</p>
+              <p name="34">吊灯</p>
+              <p name="35">吊灯</p> 
+            </div>
+          </div>
+        </div>
+        <div class="lh_pdd11d4"><p>确定</p></div>
+      </div>
+      <!--*********商品筛选结束标***************-->
+      <!--*********图片2d渲染开始标***************-->
+      <div class="lh_pdd12">
+        <canvas id="lh_canvas" width="1300" height="600">
+         不支持canvas
+       </canvas>
+      </div>
+      <!--*********图片2d渲染结束标***************-->
+    </div>
+  </div>
+  <script type="text/javascript" src="js/lh_pddange.js"></script><!--基本是页面的数据绑定（lh）-->
+ </body>
+</html>

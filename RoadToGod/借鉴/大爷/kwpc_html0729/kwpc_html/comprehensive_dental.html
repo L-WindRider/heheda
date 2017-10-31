@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>科瓦齿科_汇中/美/法/韩/德/日医生坐诊_享德国百年齿科经验</title>
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/tab.js"></script>
+<script src='js/jquery-jimiScrollTo-2.0.0.js'></script>
+<script src='js/jquery-jimiScrollFixed.js'></script>
+<script type="text/javascript" src="js/lrtk.js"></script>
+<script type="text/javascript">
+$(function(){
+var slideHeight = 100; // px
+var defHeight = $('.bd_partner_ul').height();
+if(defHeight >= slideHeight){
+	$('.bd_partner_ul').css('height' , slideHeight + 'px');
+	$('.read-more').append('<a href="javascript:;">点击更多</a>');
+	$('.read-more a').click(function(){
+		var curHeight = $('.bd_partner_ul').height();
+		if(curHeight == slideHeight){
+			$('.bd_partner_ul').animate({
+			  height: defHeight
+			}, "normal");
+			$('.read-more a').html('收起更多').addClass('more_a');
+		}else{
+			$('.bd_partner_ul').animate({
+			 height: slideHeight
+			}, "normal");
+			$('.read-more a').html('点击更多').removeClass('more_a');
+		}
+		return false;
+	});		
+}
+});
+</script>
+
+
+</head>
+
+<body>
+<div class="hd">
+  <div class="hd_language"><a href="javascript:;">中文简体</a><a href="javascript:;">ENGLISH</a><a href="javascript:;">日本语</a></div>
+  <div class="hd_top">
+    <div class="hd_top_lt">
+       <a href="javascript:;"><img src="images/logo_01.png" width="237" height="56" /></a>
+       <h3>齿科连锁品牌 • 汇聚多国专家</h3>
+    </div>
+    <div class="hd_top_rt">
+        <a href="javascript:;" class="hd_appointment">网上预约</a>
+        <h4>免费电话预约：400-6060-222</h4>
+        <div class="hd_share"><a href="jacascript:;">新浪微博</a><a href="jacascript:;">微信</a></div>
+    </div>
+  </div>
+  <div class="hd_menu">
+    <ul>
+      <li><h6><a href="javascript:;">首页</a></h6></li>
+      <li><h6 class="xl_mn"><a href="javascript:;">关于科瓦</a></h6>
+         <div class="menu_xl">
+           <a href="javascript:;">科瓦历程</a>
+           <a href="javascript:;">服务理念</a>
+           <a href="javascript:;">社会责任</a>
+         </div>
+      </li>
+      <li><h6><a href="javascript:;">专家/视频</a></h6></li>
+      <li><h6><a href="javascript:;">直播互动</a></h6></li>
+      <li class="mn_dq"><h6><a href="javascript:;">服务项目</a></h6></li>
+      <li><h6><a href="javascript:;">特色医疗</a></h6></li>
+      <li><h6><a href="javascript:;">科瓦牙学院</a></h6></li>
+      <li><h6><a href="javascript:;">积分/会员</a></h6></li>
+    </ul>
+  </div>
+</div>
+<div class="md">
+<div class="nmd_banner"><img src="images/n_banner_01.jpg"  /></div>
+<div class="md_position"><a href="javascript:;">首页</a> > <a href="javascript:;">服务项目</a> > <a href="javascript:;">种植中心</a></div>
+<div class="md_nav si_nav">
+ <ul>
+ <!--  style="width:14.2%;"  14.2%= 100%除以li的数量 自由判断  我这里先直接算好写死了 -->
+ <li class="sinav_dq" style=" width:12.5%;"><span><img src="images/cd_whiteicon_01.png" width="34" height="34" /></span><a href="javascript:;">牙齿美白</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_02.png" width="34" height="34" /></span><a href="javascript:;">口腔修复</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_03.png" width="34" height="34" /></span><a href="javascript:;">无痛洁牙</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_04.png" width="34" height="34" /></span><a href="javascript:;">牙周治疗</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_05.png" width="34" height="34" /></span><a href="javascript:;">牙体牙髓</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_06.png" width="34" height="34" /></span><a href="javascript:;">综合齿科案例</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_07.png" width="34" height="34" /></span><a href="javascript:;">综合齿科团队</a></li>
+ <li style=" width:12.5%;"><span><img src="images/cd_whiteicon_08.png" width="34" height="34" /></span><a href="javascript:;">综合齿科热点问答</a></li>
+ </ul>
+</div>
+
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_01.png" width="34" height="34" /></span>牙齿美白</div>
+  <div class="md_cdfbt"><h6>牙齿美白适应症</h6></div>
+   <div class="oral_diseases mdcd_nr">
+      <div class="od_bt">
+        <ul>
+          <li id="one1" onclick="setTab('one',1,5)" class="hover"><p><span><img src="images/cd_img_01.png" width="190" height="190" /></span></p><p>牙齿发黄</p></li>
+          <li id="one2" onclick="setTab('one',2,5)" ><p><span><img src="images/cd_img_02.png" width="190" height="190" /></span></p><p>牙齿发黑</p></li>
+          <li id="one3" onclick="setTab('one',3,5)"><p><span><img src="images/cd_img_03.png" width="190" height="190" /></span></p><p>四环素牙</p></li>
+          <li id="one4" onclick="setTab('one',4,5)"><p><span><img src="images/cd_img_04.png" width="190" height="190" /></span></p><p>色素牙</p></li>
+          <li id="one5" onclick="setTab('one',5,5)"><p><span><img src="images/cd_img_05.png" width="190" height="190" /></span></p><p>氟斑牙</p></li>
+        </ul>
+      </div>
+      <div class="od_nr"> 
+        <div id="con_one_1">
+           <p>黄牙即是牙齿发黄， 形成的原因有三种：第一种是斑釉牙，又称为氟斑牙，为饮水中氟元素浓度过高所致。当氟浓度超过百万分之一时，就会影响牙胚的钙化过程，牙齿表面发黄，凹凸不平，出现点状或条状凹陷性缺损。</p>
+          <h5>牙齿美白特色技术</h5>
+           <p><img src="images/cd_img_06.png" width="978" height="379" /></p>
+        </div>
+        <div id="con_one_2" style="display:none">内容2</div>
+        <div id="con_one_3" style="display:none">内容3</div>
+        <div id="con_one_4" style="display:none">内容4</div>
+        <div id="con_one_5" style="display:none">内容5</div> 
+      </div>
+   </div>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_02.png" width="34" height="34" /></span>口腔修复</div>
+   <div class="oral_diseases">
+      <div class="od_bt">
+        <ul>
+          <li id="two1" onclick="setTab('two',1,5)" class="hover"><p><span><img src="images/cd_img_07.png" width="190" height="190" /></span></p><p>烤瓷牙</p></li>
+          <li id="two2" onclick="setTab('two',2,5)" ><p><span><img src="images/cd_img_08.png" width="190" height="190" /></span></p><p>全瓷牙</p></li>
+          <li id="two3" onclick="setTab('two',3,5)"><p><span><img src="images/cd_img_09.png" width="190" height="190" /></span></p><p>镶牙</p></li>
+          <li id="two4" onclick="setTab('two',4,5)"><p><span><img src="images/cd_img_10.png" width="190" height="190" /></span></p><p>假牙</p></li>
+          <li id="two5" onclick="setTab('two',5,5)"><p><span><img src="images/cd_img_11.png" width="190" height="190" /></span></p><p>牙齿缺损</p></li>
+        </ul>
+      </div>
+      <div class="od_nr"> 
+        <div id="con_two_1">
+           <p>烤瓷牙是恢复牙齿缺损及达到功能和美观要求的修复牙冠。从结构上分内冠和釉面瓷层，从质地上分为金属内冠、和全瓷内冠烤瓷</p>
+        </div>
+        <div id="con_two_2" style="display:none">内容2</div>
+        <div id="con_two_3" style="display:none">内容3</div>
+        <div id="con_two_4" style="display:none">内容4</div>
+        <div id="con_two_5" style="display:none">内容5</div> 
+      </div>
+   </div>
+   <div class="md_cdfbt"><h6>口腔修复技术特点</h6></div>
+   <div class="md_coort_nr">
+     <p><img src="images/cd_img_12.png" width="985" height="367" /></p>
+     <p><img src="images/cd_img_13.png" width="936" height="507" /></p>
+     <p><img src="images/cd_img_14.png" width="1024" height="607" /></p>
+   </div>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_03.png" width="34" height="34" /></span>无痛洁牙</div>
+   <div class="md_ptnr"><img src="images/cd_img_15.png" width="988" height="416" /></div>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_04.png" width="34" height="34" /></span>牙周治疗</div>
+    <div class="md_cdfbt"><h6>牙周病症状</h6></div>
+    <div class="oral_diseases md_pds_nr">
+      <div class="od_bt">
+        <ul>
+          <li id="four1" onclick="setTab('four',1,3)" class="hover"><p><span><img src="images/cd_img_16.png" width="185" height="185" /></span></p><p>牙龈萎缩（牙根暴露）</p></li>
+          <li id="four2" onclick="setTab('four',2,3)" ><p><span><img src="images/cd_img_17.png" width="190" height="185" /></span></p><p>牙齿松动</p></li>
+          <li id="four3" onclick="setTab('four',3,3)"><p><span><img src="images/cd_img_18.png" width="190" height="185" /></span></p><p>牙龈出血（红肿）</p></li>
+        </ul>
+      </div>
+      <div class="od_nr"> 
+        <div id="con_four_1">
+           <p>牙龈和牙槽骨骨组织的退缩性病变。表现为牙龈退缩，牙颈部或牙根暴露。发生牙周萎缩的主要原因是：牙颈部牙石对牙龈的压迫；该部位牙的长期废用或全身性因素所致；不正确的刷牙方法带来的机械性刺激；修复体压迫牙龈等</p>
+        </div>
+        <div id="con_four_2" style="display:none">内容2</div>
+        <div id="con_four_3" style="display:none">内容3</div>
+      </div>
+   </div>
+   <div class="md_cdfbt"><h6>牙周治疗特色技术</h6></div>
+   <div class="md_pds_img"><img src="images/cd_img_19.png" width="966" height="382" /></div>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_05.png" width="34" height="34" /></span>牙体牙髓</div>
+   <div class="md_cdfbt"><h6>牙体牙髓常见病症</h6></div>
+   <div class="oral_diseases mdcd_nr cdfdp_nr">
+      <div class="od_bt">
+        <ul>
+          <li id="six1" onclick="setTab('six',1,4)" class="hover"><p><span><img src="images/cd_img_20.png" width="190" height="190" /></span></p><p>牙痛</p></li>
+          <li id="six2" onclick="setTab('six',2,4)" ><p><span><img src="images/cd_img_21.png" width="190" height="190" /></span></p><p>补牙</p></li>
+          <li id="six3" onclick="setTab('six',3,4)"><p><span><img src="images/cd_img_22.png" width="190" height="190" /></span></p><p>根管治疗</p></li>
+          <li id="six4" onclick="setTab('six',4,4)"><p><span><img src="images/cd_img_23.png" width="190" height="190" /></span></p><p>拔牙</p></li>
+        </ul>
+      </div>
+      <div class="od_nr"> 
+        <div id="con_six_1">
+           <p>牙齿硬组织的疾病称为牙体病，广义的牙体病也包括牙髓病。 龋病是一种由口腔中多种因素复合作用所导致的牙齿硬组织进行性病损，表现为无机质的脱矿和有机质的分解，随着病程的发展而有一色泽变化到形成实质性病损的演变过程。世界卫生组织已将其与癌肿和心血管疾病并列为人类三大重点防治疾病。</p>
+          <h5>科瓦儿童齿科医生建议及特色技术</h5>
+           <p><img src="images/cd_img_24.png" width="966" height="382" /><img src="images/cd_img_25.png" width="1055" height="640" /></p>
+        </div>
+        <div id="con_six_2" style="display:none">内容2</div>
+        <div id="con_six_3" style="display:none">内容3</div>
+        <div id="con_six_4" style="display:none">内容4</div>
+      </div>
+   </div>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_06.png" width="34" height="34" /></span>综合齿科案例</div>
+  
+    <div class="cdkq_nr mdcdc_nr">
+      <div class="od_bt">
+        <ul>
+          <li id="seven1" onclick="setTab('seven',1,5)" class="hover"><p><span><img src="images/cd_img_26.png" width="190" height="190" /></span></p><p>牙齿美白</p></li>
+          <li id="seven2" onclick="setTab('seven',2,5)" ><p><span><img src="images/cd_img_27.png" width="190" height="190" /></span></p><p>口腔修复</p></li>
+          <li id="seven3" onclick="setTab('seven',3,5)"><p><span><img src="images/cd_img_28.png" width="190" height="190" /></span></p><p>无痛洁牙</p></li>
+          <li id="seven4" onclick="setTab('seven',4,5)"><p><span><img src="images/cd_img_29.png" width="190" height="190" /></span></p><p>牙周治疗</p></li>
+          <li id="seven5" onclick="setTab('seven',5,5)"><p><span><img src="images/cd_img_30.png" width="190" height="190" /></span></p><p>牙体牙髓</p></li>
+        </ul>
+      </div>
+      <div class="cdc_nr"> 
+        <div id="con_seven_1">
+        <div id="mdcdc_01" class="mdcdc_tab">
+        <ul class="tab_btn"><li class="cur"><a href="javascript:;">1</a></li><li><a href="javascript:;">2</a></li><li><a href="javascript:;">3</a></li></ul>
+        <div class="tab_a"><a href="javascript:;" class="tab_aleft"><span></span></a><a href="javascript:;" class="tab_aright"><span></span></a></div>
+        <ul class="tab_cnt">
+           <li>
+              <dl class="mdcdc_dl">
+               <dt><img src="images/cd_img_31.png" width="447" height="413" /></dt>
+               <dd>
+                 <h4>牙齿美白1>患者信息： 谭先生 （职业是环保专家）</h4>
+                 <p>病例简述：</p>
+                 <p>口腔检查：牙龈退缩，牙根外露；龈缘红肿，自发性出血；牙周袋深并溢脓， 牙齿伸长、移位、松动。</p>
+                 <p>X光检查：牙槽骨普遍吸收为根长1/3-2/3左右，上前牙切牙区牙槽骨吸收至根尖。</p>
+                 <p>病例诊断：重度慢性牙周炎</p>
+                 <p>治疗方案：牙周病技术治疗后，行固定式永久性牙周夹板修复。</p>
+                 <h5>主诊医师：杨芸珠主任</h5>
+               </dd>
+              </dl>
+           </li>
+           <li>
+              牙齿美白2
+           </li>
+           <li>
+              牙齿美白3
+           </li>
+        </ul>
+      </div>
+        </div>
+
+        <div id="con_seven_2" >
+            <div id="mdcdc_02" class="mdcdc_tab">
+        <ul class="tab_btn"><li class="cur"><a href="javascript:;">1</a></li><li><a href="javascript:;">2</a></li><li><a href="javascript:;">3</a></li></ul>
+        <div class="tab_a"><a href="javascript:;" class="tab_aleft"><span></span></a><a href="javascript:;" class="tab_aright"><span></span></a></div>
+        <ul class="tab_cnt">
+           <li>
+              <dl class="mdcdc_dl">
+               <dt><img src="images/cd_img_31.png" width="447" height="413" /></dt>
+               <dd>
+                 <h4>口腔修复1>患者信息： 谭先生 （职业是环保专家）</h4>
+                 <p>病例简述：</p>
+                 <p>口腔检查：牙龈退缩，牙根外露；龈缘红肿，自发性出血；牙周袋深并溢脓， 牙齿伸长、移位、松动。</p>
+                 <p>X光检查：牙槽骨普遍吸收为根长1/3-2/3左右，上前牙切牙区牙槽骨吸收至根尖。</p>
+                 <p>病例诊断：重度慢性牙周炎</p>
+                 <p>治疗方案：牙周病技术治疗后，行固定式永久性牙周夹板修复。</p>
+                 <h5>主诊医师：杨芸珠主任</h5>
+               </dd>
+              </dl>
+           </li>
+           <li>
+              口腔修复2
+           </li>
+           <li>
+              口腔修复3
+           </li>
+        </ul>
+      </div>
+        </div>
+        <div id="con_seven_3" >
+            <div id="mdcdc_03" class="mdcdc_tab">
+        <ul class="tab_btn"><li class="cur"><a href="javascript:;">1</a></li><li><a href="javascript:;">2</a></li><li><a href="javascript:;">3</a></li></ul>
+        <div class="tab_a"><a href="javascript:;" class="tab_aleft"><span></span></a><a href="javascript:;" class="tab_aright"><span></span></a></div>
+        <ul class="tab_cnt">
+           <li>
+              <dl class="mdcdc_dl">
+               <dt><img src="images/cd_img_31.png" width="447" height="413" /></dt>
+               <dd>
+                 <h4>无痛洁牙1>患者信息： 谭先生 （职业是环保专家）</h4>
+                 <p>病例简述：</p>
+                 <p>口腔检查：牙龈退缩，牙根外露；龈缘红肿，自发性出血；牙周袋深并溢脓， 牙齿伸长、移位、松动。</p>
+                 <p>X光检查：牙槽骨普遍吸收为根长1/3-2/3左右，上前牙切牙区牙槽骨吸收至根尖。</p>
+                 <p>病例诊断：重度慢性牙周炎</p>
+                 <p>治疗方案：牙周病技术治疗后，行固定式永久性牙周夹板修复。</p>
+                 <h5>主诊医师：杨芸珠主任</h5>
+               </dd>
+              </dl>
+           </li>
+           <li>
+              无痛洁牙2
+           </li>
+           <li>
+              无痛洁牙3
+           </li>
+        </ul>
+      </div>
+        </div>
+        <div id="con_seven_4">
+           <div id="mdcdc_04" class="mdcdc_tab">
+        <ul class="tab_btn"><li class="cur"><a href="javascript:;">1</a></li><li><a href="javascript:;">2</a></li><li><a href="javascript:;">3</a></li></ul>
+        <div class="tab_a"><a href="javascript:;" class="tab_aleft"><span></span></a><a href="javascript:;" class="tab_aright"><span></span></a></div>
+        <ul class="tab_cnt">
+           <li>
+              <dl class="mdcdc_dl">
+               <dt><img src="images/cd_img_31.png" width="447" height="413" /></dt>
+               <dd>
+                 <h4>牙周治疗1>患者信息： 谭先生 （职业是环保专家）</h4>
+                 <p>病例简述：</p>
+                 <p>口腔检查：牙龈退缩，牙根外露；龈缘红肿，自发性出血；牙周袋深并溢脓， 牙齿伸长、移位、松动。</p>
+                 <p>X光检查：牙槽骨普遍吸收为根长1/3-2/3左右，上前牙切牙区牙槽骨吸收至根尖。</p>
+                 <p>病例诊断：重度慢性牙周炎</p>
+                 <p>治疗方案：牙周病技术治疗后，行固定式永久性牙周夹板修复。</p>
+                 <h5>主诊医师：杨芸珠主任</h5>
+               </dd>
+              </dl>
+           </li>
+           <li>
+              牙周治疗2
+           </li>
+           <li>
+              牙周治疗3
+           </li>
+        </ul>
+      </div>
+        </div>
+        <div id="con_seven_5">
+          <div id="mdcdc_05" class="mdcdc_tab">
+        <ul class="tab_btn"><li class="cur"><a href="javascript:;">1</a></li><li><a href="javascript:;">2</a></li><li><a href="javascript:;">3</a></li></ul>
+        <div class="tab_a"><a href="javascript:;" class="tab_aleft"><span></span></a><a href="javascript:;" class="tab_aright"><span></span></a></div>
+        <ul class="tab_cnt">
+           <li>
+              <dl class="mdcdc_dl">
+               <dt><img src="images/cd_img_31.png" width="447" height="413" /></dt>
+               <dd>
+                 <h4>牙体牙髓1>患者信息： 谭先生 （职业是环保专家）</h4>
+                 <p>病例简述：</p>
+                 <p>口腔检查：牙龈退缩，牙根外露；龈缘红肿，自发性出血；牙周袋深并溢脓， 牙齿伸长、移位、松动。</p>
+                 <p>X光检查：牙槽骨普遍吸收为根长1/3-2/3左右，上前牙切牙区牙槽骨吸收至根尖。</p>
+                 <p>病例诊断：重度慢性牙周炎</p>
+                 <p>治疗方案：牙周病技术治疗后，行固定式永久性牙周夹板修复。</p>
+                 <h5>主诊医师：杨芸珠主任</h5>
+               </dd>
+              </dl>
+           </li>
+           <li>
+              牙体牙髓2
+           </li>
+           <li>
+              牙体牙髓3
+           </li>
+        </ul>
+      </div>
+        </div>
+      </div>
+   </div>
+   
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_07.png" width="34" height="34" /></span>综合齿科团队</div>
+  <dl class="cdtr_dl">
+     <dt>
+       <div class="cdtr_btlt">
+         <p><img src="images/pd_img_12.png" width="265" height="261" /></p>
+         <p><a href="javascript:;" >在线视频</a><a href="javascript:;" >在线预约</a><a href="javascript:;" >医生简介</a></p>
+       </div>
+       <div class="cdtr_btrt">
+          <h4>金辰 日本博士</h4>
+          <p>Dr . Kinsin jin</p>
+          <h5>科瓦齿科上海金茂店院长＆首席种植专家</h5>
+          <p>日本广岛大学齿科博士<br />韩国AIC种植临床高级教授<br />哈尔滨市牙病防治所 荣誉教授<br />四平市口腔医院 名誉院长、首席种植专家<br />诺保科（Nobel Biocare）中国区种植金牌讲师<br />中国人民解放军白求恩国际和平医院口腔中心 客座教授<br />独立编撰并出版国内首本All-on-4TM专著《ALL-oN-4TM临床技术与技巧》</p>
+       </div>
+     </dt>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+     <dd><a href="javascript:;"><span><img src="images/pd_img_14.png" width="83" height="83" /></span><h5><strong>魏东</strong>副教授</h5></a></dd>
+   </dl>
+   <div style=" clear:both;"></div>
+</div>
+<div class="md_dqnr">
+  <div class="md_dqnr_bt"><span><img src="images/cd_whiteicon_08.png" width="34" height="34" /></span>综合齿科热点问答</div>
+  <div class="cdkq_nr">
+      <div class="od_bt">
+        <ul>
+          <li id="three1" onclick="setTab('three',1,5)" class="hover"><p><span><img src="images/cd_img_26.png" width="190" height="190" /></span></p><p>牙齿美白</p></li>
+          <li id="three2" onclick="setTab('three',2,5)" ><p><span><img src="images/cd_img_27.png" width="190" height="190" /></span></p><p>口腔修复</p></li>
+          <li id="three3" onclick="setTab('three',3,5)"><p><span><img src="images/cd_img_28.png" width="190" height="190" /></span></p><p>无痛洁牙</p></li>
+          <li id="three4" onclick="setTab('three',4,5)"><p><span><img src="images/cd_img_29.png" width="190" height="190" /></span></p><p>牙周治疗</p></li>
+          <li id="three5" onclick="setTab('three',5,5)"><p><span><img src="images/cd_img_30.png" width="190" height="190" /></span></p><p>牙体牙髓</p></li>
+        </ul>
+      </div>
+      <div class="cd_nr"> 
+        <div id="con_three_1">
+           <ul>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>矫正龅牙有哪些方法？</p></div>
+               <div class="cdkq_q"><span>Q</span><p> 1、 传统牙齿矫正<br />传统牙齿矫正就是我们所说的钢丝牙套，是通过在牙齿表面黏上托槽，即牙齿矫正器，再在托槽上扣上钢线，并以钢线施力来使牙齿移动，令牙齿重新排列。<br />2、 无托槽隐形矫正<br />无托槽隐形矫正技术，是根据每个人的实际情况，通过计算机辅助三维诊断、设计和制造系统，用一系列个性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。
+</p></div>
+             </li>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>如何选择矫正医生？</p></div>
+               <div class="cdkq_q"><span>Q</span><p>性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。</p></div>
+             </li>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>牙齿矫正最佳年龄是几岁？</p></div>
+               <div class="cdkq_q"><span>Q</span><p>性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。</p></div>
+             </li>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>牙齿矫正怎么样好？</p></div>
+               <div class="cdkq_q"><span>Q</span><p>性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。</p></div>
+             </li>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>牙齿矫正最佳年龄是几岁？</p></div>
+               <div class="cdkq_q"><span>Q</span><p>性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。</p></div>
+             </li>
+           </ul>
+        </div>
+        <div id="con_three_2" style="display:none">
+           <ul>
+             <li>
+               <div class="cdkq_a"><span>A</span><p>矫正龅牙有哪些方法？</p></div>
+               <div class="cdkq_q"><span>Q</span><p> 1、 传统牙齿矫正<br />传统牙齿矫正就是我们所说的钢丝牙套，是通过在牙齿表面黏上托槽，即牙齿矫正器，再在托槽上扣上钢线，并以钢线施力来使牙齿移动，令牙齿重新排列。<br />2、 无托槽隐形矫正<br />无托槽隐形矫正技术，是根据每个人的实际情况，通过计算机辅助三维诊断、设计和制造系统，用一系列个性化的透明矫治器，来完成矫治的正畸技术，具有美观、定位精准、清洁方便等优点。
+</p></div>
+             </li>
+             </ul>
+        </div>
+        <div id="con_three_3" style="display:none">内容3</div>
+        <div id="con_three_4" style="display:none">内容4</div>
+        <div id="con_three_5" style="display:none">内容5</div>
+      </div>
+   </div>
+   <div style=" clear:both;"></div>
+</div>
+
+</div>
+
+<div class="bd">
+  <div class="bd_partner">
+    <div class="bd_partner_bt">Global Insurance Direct Billing 国际保险直接结算</div>
+    <div class="bd_partner_ul">
+     <a href="javascript:;"><img src="images/hzhb_img_01.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_02.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_03.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_04.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_05.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_06.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_07.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_08.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_09.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_10.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_11.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_12.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_13.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_14.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_15.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_16.png" width="137" height="41" /></a>
+     
+     <a href="javascript:;"><img src="images/hzhb_img_01.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_02.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_03.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_04.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_05.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_06.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_07.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_08.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_09.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_10.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_11.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_12.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_13.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_14.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_15.png" width="137" height="41" /></a>
+     <a href="javascript:;"><img src="images/hzhb_img_16.png" width="137" height="41" /></a>
+    </div>
+    <div class="read-more"></div>
+  </div>
+  <div class="bd_btm">
+   <div class="bd_flink">
+   <ul>
+    <li>
+      <h5>关于科瓦</h5>
+      <a href="javascript:;">科瓦品牌</a>
+      <a href="javascript:;">科瓦优势</a>
+      <a href="javascript:;">科瓦文化</a>
+      <a href="javascript:;">领先设备</a>
+      <a href="javascript:;">科瓦专家</a>
+      <a href="javascript:;">科瓦服务</a>
+      <a href="javascript:;">科瓦环境</a>
+      <a href="javascript:;">科瓦荣誉</a>
+      <a href="javascript:;">前沿技术</a>
+      <a href="javascript:;">先进材料</a>
+      <a href="javascript:;">全球合作伙伴</a>
+      <a href="javascript:;">消毒标准</a>
+      <a href="javascript:;">最新动态</a>
+    </li>
+    <li>
+      <h5>前沿技术</h5>
+      <a href="javascript:;">全口种植</a>
+      <a href="javascript:;">口腔正畸</a>
+      <a href="javascript:;">口腔修复</a>
+      <a href="javascript:;">无痛洁牙</a>
+      <a href="javascript:;">英国美白</a>
+      <a href="javascript:;">牙体牙髓</a>
+      <a href="javascript:;">牙周治疗</a>
+      <a href="javascript:;">儿童齿科</a>
+    </li>
+    <li>
+      <h5>投资人关系</h5>
+      <a href="javascript:;">牙体牙髓</a>
+      <a href="javascript:;">牙周治疗</a>
+      <a href="javascript:;">儿童齿科</a>
+    </li>
+    <li>
+      <h5>加入我们</h5>
+      <a href="javascript:;">科瓦招聘</a>
+      <a href="javascript:;">医生招聘</a>
+      <a href="javascript:;">护士招聘</a>
+      <a href="javascript:;">管理招聘</a>
+    </li>
+    <li>
+      <h5>国际合作</h5>
+      <a href="javascript:;">银行VIP</a>
+      <a href="javascript:;">高档会所</a>
+      <h5>科瓦中国</h5>
+      <a href="javascript:;">上海-浦东金茂</a>
+      <a href="javascript:;">上海-浦西恒利</a>
+      <a href="javascript:;">北京-蓝港</a>
+      <a href="javascript:;">北京-嘉铭中心</a>
+      <a href="javascript:;">杭州-万象城</a>
+    </li>
+    <li>
+      <h5>关注我们</h5>
+      <a href="javascript:;">新浪微博</a>
+      <a href="javascript:;">微信</a>
+      <a href="javascript:;">在线QQ</a>
+      <a href="javascript:;">在线咨询</a>
+      <h5>积分商城</h5>
+      <a href="javascript:;">商城图标</a>
+      <a href="javascript:;">注册</a>
+      <a href="javascript:;">登入</a>
+      <a href="javascript:;">分享</a>
+    </li>
+    </ul>
+    </div>
+    <div class="bd_bd">
+      <div class="bd_bd1">
+     <span>科瓦齿科版权所有| 网站信息仅供参考，不能作为诊断及治疗的依据，就诊请遵医嘱   沪ICP备09002035号-1,沪卫（中医）网复审[2014]第10132号</span>
+     <h6><a href="javascript:;">法律声明</a><a href="javascript:;">隐私信息和Cookies</a><a href="javascript:;">网站地图</a></h6>
+    </div>
+    </div>
+  </div>
+</div>
+<script>
+$('.md_nav li').jimiScrollTo($('.md_dqnr'),{marginTop:100},'mdnav_dq');
+ $('.md_nav').jimiScrollFixed({fixedMarginTop:0.1});
+ $('.ctone_left>li').click(function(){
+	 $(this).addClass('ct_dq').siblings().removeClass('ct_dq');
+	 
+	 var par=$(this).parent().parent();
+	 var index=$(this).index();
+	 par.find('.ctone_right li').eq(index).show().siblings().hide();
+	 })
+
+</script>
+
+
+
+<ul class="suspension_lt">
+<li><a href="javascript:;">品牌</a></li>
+<li><a href="javascript:;">特色技术</a></li>
+<li><a href="javascript:;">人才招聘</a></li>
+<li><a href="javascript:;">齿科环境</a></li>
+<li><a href="javascript:;">科瓦中国</a></li>
+<li><a href="javascript:;">科瓦资讯</a></li>
+<li><a href="javascript:;">首页</a></li>
+</ul>
+<ul class="suspension_rt">
+<li><a href="javascript:;">优惠活动</a></li>
+<li><a href="javascript:;">在线预约</a></li>
+<li><a href="javascript:;">咨询专家</a></li>
+<li><a href="javascript:;">免费回电</a></li>
+<li><a href="javascript:;">QQ</a></li>
+<li><a href="javascript:;">微信</a></li>
+<li><a href="javascript:;">返回</a></li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+.star_1,.star_2,.star_3,.star_4,.star_5,.star_6,.star_7,.star_8,.star_9,.star_10,.star_11{
+	display: none;
+	color: #fff;
+	background: #000;
+	/*font-size: 150%;*/
+	/*width: 200px;
+	height: 100px;*/
+	padding: 10px 10px;
+	padding-right: 2px;
+	position: absolute;
+	/*top: 350px;
+	left: 30px;
+	z-index: 9999;*/
+
+	word-break:break-all;
+	opacity:0.9;
+	border-radius: 10px;
+	border:1px solid red;
+	/*font-weight: bold;*/
+}
+#goback_1,#goback_2,#goback_3,#goback_4,#goback_5,#goback_6,#goback_7,#goback_8,#goback_9,#goback_10,#goback_11{
+	width: 60px;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+	position: relative;
+	font-size:60%;
+	font-weight:bold;
+	bottom: 0px;
+	left: 185px;
+	text-decoration: underline;
+}

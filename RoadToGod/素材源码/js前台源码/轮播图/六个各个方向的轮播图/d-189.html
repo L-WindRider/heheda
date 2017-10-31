@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>带按钮控制轮播焦点图代码_js代码网</title>
+<meta name="keywords" content="jquery特效、js代码、jquery图片滚动" />
+<meta name="description" content="jquery焦点图插件带按钮控制轮播焦点图代码。" />
+<style type="text/css">
+*{padding:0;margin:0;font-family:"微软雅黑"}
+li{color:#fff}
+.mains{width:800px;padding-left:15px;margin:0 auto}
+.mains .title{font-size:25px;text-align:center;padding:10px 5px}
+.view{position:absolute;top:50%;left:50%;margin-left:-90px;margin-top:-25px;text-align:center;width:180px;line-height:50px;vertical-align:middle;height:50px;font-size:18px;color:#fff;background:rgba(0,0,0,0.4)}
+/* 公共 */
+.imglist img{width:380px;height:180px}
+/* imgscroll */
+.imgscroll{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll:hover .pre{display:block}
+.imgscroll:hover .next{display:block}
+.imgscroll li{list-style:none;margin:0;padding:0}
+.imgscroll .imglist{width:100%;height:inherit;position:absolute}
+.imgscroll .imglist .imgurl{height:inherit;position:absolute;top:0;left:0}
+.imgscroll .imgdesc{width:80px;left:50%;margin-left:-40px;bottom:5px;position:absolute;overflow:hidden}
+.imgscroll .imgdesc li{width:16px;border-radius:8px;transition:all linear 0.2s;height:16px;float:left;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer;line-height:16px;}
+.imgscroll .imgdesc li.hover{background:#fff;color:#000}
+.imgscroll .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll .imginfo{position:absolute;width:20px;height:100%;bottom:0;left:0;overflow:hidden}
+.imgscroll .imginfo li{height:100%;color:#fff;width:20px;padding:0 1%;color:#fff;background:rgba(102,102,102,0.5);text-align:center}
+/* imgscroll2 */
+.imgscroll2{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll2:hover .pre{display:block}
+.imgscroll2:hover .next{display:block}
+.imgscroll2 li{list-style:none;margin:0;padding:0}
+.imgscroll2 .imglist{width:100%;height:inherit;position:absolute}
+.imgscroll2 .imglist .imgurl{height:inherit;position:absolute;top:0;left:0}
+.imgscroll2 .imgdesc{width:80px;left:50%;margin-left:-40px;bottom:5px;position:absolute;overflow:hidden}
+.imgscroll2 .imgdesc li{width:16px;border-radius:8px;transition:all linear 0.2s;height:16px;float:left;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer;line-height:16px;}
+.imgscroll2 .imgdesc li.hover{background:#fff;color:#000}
+.imgscroll2 .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll2 .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll2 .imginfo{position:absolute;width:190px;top:0;left:50%;margin-left:-95px;height:30px;overflow:hidden}
+.imgscroll2 .imginfo li{height:30px;color:#fff;width:100%;color:#fff;background:rgba(102,102,102,0.5);line-height:30px;vertical-align:middle;text-align:center}
+/* imgscroll3 */
+.imgscroll3{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll3:hover .pre{display:block}
+.imgscroll3:hover .next{display:block}
+.imgscroll3 li{list-style:none;margin:0;padding:0}
+.imgscroll3 .imglist{width:100%;height:inherit;position:absolute;right:0}
+.imgscroll3 .imglist .imgurl{height:inherit;float:left}
+.imgscroll3 .imgdesc{width:50%;height:30px;bottom:0;right:0;position:absolute;overflow:hidden}
+.imgscroll3 .imgdesc li{width:20%;transition:all linear 0.2s;height:30px;float:left;line-height:30px;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer}
+.imgscroll3 .imgdesc li.hover{background:#000;color:#fff}
+.imgscroll3 .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll3 .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll3 .imginfo{position:absolute;width:50%;bottom:0;left:0;height:30px;overflow:hidden}
+.imgscroll3 .imginfo li{height:30px;color:#fff;width:100%;color:#fff;background:rgba(102,102,102,0.5);line-height:30px;vertical-align:middle;text-align:center}
+/* imgscroll4 */
+.imgscroll4{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll4:hover .pre{display:block}
+.imgscroll4:hover .next{display:block}
+.imgscroll4 li{list-style:none;margin:0;padding:0}
+.imgscroll4 .imglist{width:100%;height:inherit;position:absolute}
+.imgscroll4 .imglist .imgurl{height:180px}
+.imgscroll4 .imgdesc{width:80px;left:50%;margin-left:-40px;bottom:5px;position:absolute;overflow:hidden}
+.imgscroll4 .imgdesc li{width:16px;border-radius:8px;transition:all linear 0.2s;height:16px;float:left;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer}
+.imgscroll4 .imgdesc li.hover{background:#fff;color:#fff}
+.imgscroll4 .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll4 .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+/* imgscroll5 */
+.imgscroll5{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll5:hover .pre{display:block}
+.imgscroll5:hover .next{display:block}
+.imgscroll5 li{list-style:none;margin:0;padding:0}
+.imgscroll5 .imglist{width:100%;height:inherit;position:absolute}
+.imgscroll5 .imglist .imgurl{float:left}
+.imgscroll5 .imgdesc{width:50%;height:30px;bottom:0;left:0;position:absolute;overflow:hidden}
+.imgscroll5 .imgdesc li{width:20%;transition:all linear 0.2s;height:30px;float:left;line-height:30px;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer}
+.imgscroll5 .imgdesc li.hover{background:#000;color:#fff}
+.imgscroll5 .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll5 .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll5 .imginfo{position:absolute;width:50%;bottom:0;right:0;height:30px;overflow:hidden}
+.imgscroll5 .imginfo li{height:30px;color:#fff;width:100%;color:#fff;background:rgba(102,102,102,0.5);line-height:30px;vertical-align:middle;text-align:center}
+/* imgscroll6 */
+.imgscroll6{width:380px;margin-right:5px;margin-bottom:5px;height:180px;float:left;position:relative;overflow:hidden}
+.imgscroll6:hover .pre{display:block}
+.imgscroll6:hover .next{display:block}
+.imgscroll6 li{list-style:none;margin:0;padding:0}
+.imgscroll6 .imglist{width:100%;height:inherit;position:absolute;bottom:0}
+.imgscroll6 .imglist .imgurl{height:180px}
+.imgscroll6 .imgdesc{width:80px;left:50%;margin-left:-40px;bottom:5px;position:absolute;overflow:hidden}
+.imgscroll6 .imgdesc li{width:16px;border-radius:8px;transition:all linear 0.2s;height:16px;float:left;vertical-align:middle;text-align:center;background:rgba(102,102,102,0.5);margin:0;cursor:pointer}
+.imgscroll6 .imgdesc li.hover{background:#fff;color:#fff}
+.imgscroll6 .pre{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;left:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+.imgscroll6 .next{position:absolute;top:50%;margin-top:-40px;z-index:10;width:20px;height:80px;right:0;background:rgba(0,0,0,0.5);line-height:80px;vertical-align:middle;text-align:center;color:#fff;cursor:pointer;display:none}
+</style>
+
+</head>
+
+<body>
+
+<div class="mains">
+	
+	<div class="title">图片循环[渐变/滚动]切换特效，并支持控制左右滚动，不同方向的滚动</div>
+	
+	<div class="imgscroll5">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</div>
+		<div class="imginfo">
+			<li>第一张图片文字说明</li>
+			<li>第二张图片文字说明</li>
+			<li>第三张图片文字说明</li>
+			<li>第四张图片文字说明</li>
+			<li>第五张图片文字说明</li>
+		</div>
+		<div class="view">向左滚动演示/6s</div>
+	</div>
+	
+	<div class="imgscroll3">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</div>
+		<div class="imginfo">
+			<li>第一张图片文字说明</li>
+			<li>第二张图片文字说明</li>
+			<li>第三张图片文字说明</li>
+			<li>第四张图片文字说明</li>
+			<li>第五张图片文字说明</li>
+		</div>
+		<div class="view">向右滚动演示/3s</div>
+	</div>
+	
+	<div class="imgscroll4">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</div>
+		<div class="view">向上滚动演示/4s</div>
+	</div>
+	
+	<div class="imgscroll6">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</div>
+		<div class="view">向下滚动演示/7s</div>
+	</div>
+	
+	<div class="imgscroll2">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</div>
+		<div class="imginfo">
+			<li>第一张图片文字说明</li>
+			<li>第二张图片文字说明</li>
+			<li>第三张图片文字说明</li>
+			<li>第四张图片文字说明</li>
+			<li>第五张图片文字说明</li>
+		</div>
+		<div class="view">渐变循环演示/5s</div>
+	</div>
+	
+	<div class="imgscroll">
+		<div class="pre"><</div>
+		<div class="next">></div>
+		<div class="imglist">
+			<li class="imgurl"><img src="picture/1.jpg" /></li>
+			<li class="imgurl"><img src="picture/2.jpg" /></li>
+			<li class="imgurl"><img src="picture/3.jpg" /></li>
+			<li class="imgurl"><img src="picture/4.jpg" /></li>
+			<li class="imgurl"><img src="picture/5.jpg" /></li>
+		</div>
+		<div class="imgdesc">
+			<li class="hover">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</div>
+		<div class="imginfo">
+			<li>第一张图片文字说明</li>
+			<li>第二张图片文字说明</li>
+			<li>第三张图片文字说明</li>
+			<li>第四张图片文字说明</li>
+			<li>第五张图片文字说明</li>
+		</div>
+		<div class="view">渐变循环演示/10s</div>
+	</div>
+	
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script> 
+<script type="text/javascript" src="js/jquery.imgscroll.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(e) {
+	 imgScroll.gradual({
+		 'name':'imgscroll2'
+		 })
+	 imgScroll.gradual({
+		 'name':'imgscroll'
+		 },10000)
+	 imgScroll.scroll({
+		 'name':'imgscroll3',
+		 'direction':'right'
+		 },3000)  
+	  imgScroll.scroll({
+		 'name':'imgscroll4',
+		 'direction':'top'
+		 },4000) 
+	  imgScroll.scroll({
+		 'name':'imgscroll5',
+		 'direction':'left'
+		 },6000) 
+	  imgScroll.scroll({
+		 'name':'imgscroll6',
+		 'direction':'bottom'
+		 },7000) 
+});
+
+</script>
+<script type="text/javascript">
+function stop(){
+   return false;
+}
+document.oncontextmenu=stop;
+</script>
+</body>
+</html>
+<!--代码整理：js代码网 www.jsdaima.com--> 

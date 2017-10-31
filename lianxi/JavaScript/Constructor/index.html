@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/windrider.js"></script>
+</head>
+<body>
+    <script>
+        function a(name,fun){
+          fun && fun(name);//加fun && 的好处是当fun为undefined时，JS不报错，fun(name)不执行
+        }
+        function b(name){
+            a(name,function(name){//传递一个匿名函数进去，到a中执行
+                console.log(name);
+            });
+        }
+        b(1);
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>科瓦齿科_汇中/美/法/韩/德/日医生坐诊_享德国百年齿科经验</title>
+<link href="css/global.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+    $(function(){
+	  var h=$('.pop_tips').outerHeight();
+	  var w=$('.pop_tips').outerWidth();
+	  $('.click').click(function(){
+		$('.black_bg').fadeIn(200);
+		$('.pop_tips').css({'opacity':0,top:'60%',left:'50%',transform: 'translateY(-50%) translateX(-50%)',display:'block'}).animate({top:'50%','opacity':1},240);
+	  })
+	  $('.close_a').click(function(){
+		$('.black_bg').fadeOut(200);
+		$('.pop_tips').animate({top:'60%','opacity':0},240,'swing',function(){$('.pop_tips').hide()});
+	  })
+	})
+</script>
+
+
+</head>
+
+<body>
+<a href="javascript:;" class="click">11</a>
+
+
+<!--在线预约弹窗-->
+<div class="black_bg" style="display:none;"></div>
+<div class="pop_tips" >
+  <p>信息提交错误，可能是网络原因，请重新提交</p>
+  <p><a href="javascript:;" class="close_a">知道了</a></p>
+</div>
+
+</body>
+</html>

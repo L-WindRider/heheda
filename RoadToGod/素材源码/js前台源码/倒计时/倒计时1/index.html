@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQuery材</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+        <link href="css/style3.css"  rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.js"></script>
+        <script type="text/javascript" src="js/fliptimer.js"></script>
+    </head>
+    <body>
+        <div class="ft_counter">
+            <script type="text/javascript">
+                      $(".ft_counter").EightycloudsFliptimer({
+                         enddate    : "1 December 2016 12:00:00 GMT",
+                         callback   : function(){
+                             alert("Countdown is Complete!");
+                         }
+                      });
+            </script>
+        </div>
+    </body>
+</html>

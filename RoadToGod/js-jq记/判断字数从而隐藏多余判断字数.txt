@@ -1,0 +1,27 @@
+
+	$(function () {
+        var h = $(".article-jj").length;
+        alert(h);
+        var j = 0;
+        var i = 0;
+        for (j; j < h; j++) {
+            alert(i);
+            $(".article-jj").eq(i).attr("id", i);
+            var s = 0;
+            s = $("#" + i + "").html().toString();
+            alert(s);
+            s = s.replace(/(\n)/g, "");
+            s = s.replace(/(\t)/g, "");
+            s = s.replace(/(\r)/g, "");
+            s = s.replace(/<\/?[^>]*>/g, "");
+            s = s.replace(/\s*/g, "");
+            $("#" + i + "").html(s.substring(0, 32) + "...");
+            i++;
+        }
+    })
+<div class="article-jj">此处省略35个字</div>
+<div class="article-jj">此处省略35个字</div>
+<div class="article-jj">此处省略35个字</div>
+<div class="article-jj">此处省略35个字</div>
+<div class="article-jj">此处省略35个字</div>
+<div class="article-jj">此处省略35个字</div>

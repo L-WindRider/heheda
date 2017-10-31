@@ -1,0 +1,22 @@
+新的标准链接http://www.runoob.com/html/html5-intro.html
+1、上下图去间距：img{outline-width:0px;vertical-align:top;}左右图去间距：{border:0;float:left}
+
+2、色彩条.color-line {
+    background: #f7f9fa linear-gradient(to right, #34495e, #34495e 25%, #9b59b6 25%, #9b59b6 35%, #3498db 35%, #3498db 45%, #62cb31 45%, #62cb31 55%, #ffb606 55%, #ffb606 65%, #e67e22 65%, #e67e22 75%, #e74c3c 85%, #e74c3c 85%, #c0392b 85%, #c0392b 100%) no-repeat scroll 50% 100% / 100% 6px;
+    height: 6px;
+}
+3、去除input默认样式input{-webkit-appearance:none;}
+4、超出内容自动隐藏变成省略号{white-space: nowrap;overflow: hidden;text-overflow: ellipsis;/*white-space: nowrap;自动变成单行省略*//*word-break: keep-all;换行*/}
+5、图片和字平行居中对齐{vertical-align:middle;}
+6、同class奇偶不一样.lh_qqq:nth-child(odd){} .lh_qqq:nth-child(even){}
+7、去除图片之间缝隙{ outline-width:0px;vertical-align:top;}
+8、锯齿{width:300px;height:50px;background:#caca8c;
+    background-image:-webkit-gradient(linear,50% 0,0 100%,from(transparent),color-stop(.5,transparent),color-stop(.5,#d86707),to(#d86707)),
+    -webkit-gradient(linear,50% 0,100% 100%,from(transparent),color-stop(.5,transparent),color-stop(.5,#d86707),to(#d86707));                                
+    background-size:20px 10px;background-repeat:repeat-x;background-position:0 100%; }
+9、字体删除线{text-decoration:line-through;(none/去掉下划线样式、overline/上划线、underline/下划线)}
+10、字体垂直居中:父域{display: table;height:50px;}子域{vertical-align: middle;display: table-cell;}
+11、div旋转{transform: rotate(180deg);/*180表示旋转180度*/}
+12、根据宽度改变字体大小{1vm}
+13、去掉chrome中input，textarea在得到焦点时出现黄色边框的方法  input,button,select,textarea{outline:none}
+14、去除input黄色背景input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #FFF inset; }

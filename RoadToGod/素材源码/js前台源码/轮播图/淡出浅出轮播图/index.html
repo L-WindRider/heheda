@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>360随身WiFi官网jQuery焦点图 - 站长素材</title>
+<link href="css/zzsc.css" rel="stylesheet" type="text/css">
+<style>
+    body{
+        font-family:'Microsoft Yahei';
+        background-color:#eeeeee;
+		width:100%;
+    }
+
+    
+    .slide-wp{
+        width:100%; 
+        position:relative; 
+    }
+    .slides, .slide-bg{
+        background-color:#fff; 
+        overflow-x:hidden;
+    }
+    .slidesjs-pagination{
+        position:absolute;
+        bottom:20px;
+        left:50%;
+        z-index:11;
+        margin-left:-52px;
+    }
+    .slidesjs-pagination li{
+        float:left;
+        margin-right:10px;
+    }
+    .slidesjs-pagination li a{
+        text-indent:-9999px;
+        background-color:#333;
+        display:inline-block;
+        *display:block;
+        _display:block;
+        width:25px;
+        height:7px;
+    }
+    .slidesjs-pagination li a.active{
+        background-color:#666;
+    }
+    .slideChild{
+        width:945px;
+        margin:0 auto;
+        z-index:10;
+        height:460px;
+        position:relative;
+    }
+    .slideChild a.opa{
+        position:absolute;
+        top:0;
+        left:0;
+        display:inline-block;
+        *display:block;
+        _display:block;
+        width:100px;
+        height:50px;
+        background-color:#fff;
+        filter:alpha(opacity=0); 
+        -ms-filter:"alpha(opacity=0)"; 
+        opacity:0;
+    }
+    .slideChild a.a-jd{
+        top:320px;
+        left:135px;
+        width:230px;
+        height:55px;
+    }
+    .slideChild a.a-video{
+        top:50px;
+        left:40px;
+        width:230px;
+        height:285px;
+    }
+    .slideChild a.a-ad{
+        position:absolute;
+        background-color:#202020;
+        color:#fff;
+        text-align:center;
+        top:365px;
+        left:404px;
+        width:130px;
+        height:32px;
+        line-height:32px;
+        font-size:16px;
+    }
+    .slideChild span.timeTip{
+        color:#fbd504;
+        font-size:56px;
+        position:absolute;
+        top:165px;
+        left:170px;
+        font-weight:bold;
+    }
+    .slideImg{
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:9;
+        width:100%;
+    }
+
+
+</style>
+</head>
+<body>
+<div class="slide-bg">
+	<div class="slide-wp">
+        <div id="slides" class="slides">
+            <div>
+                <img class="slideImg" src="images/focus_figure1.jpg" galleryimg="no">
+            </div>
+            <div>
+                <!--<div class="slideChild">
+                    <a class="a-jd opa js-aJd" href="http://sc.chinaz.com/"></a>
+                </div>-->
+        	    <img class="slideImg" src="images/focus_figure2.jpg" galleryimg="no">
+            </div>
+            <div>
+        	    <img class="slideImg" src="images/focus_figure3.jpg" galleryimg="no">
+            </div>
+        </div><!--end slides-->
+    </div><!--end slide-wp-->
+</div><!--end slide-bg-->
+<div class="uptop"><a href="#"></a></div><!--end top-->
+<script src="js/181.js"></script>
+<script src="js/jquery.slides.min.js"></script>
+<script>
+$(function() {
+	$('#slides').slidesjs({
+		play:{
+			active: false,
+			effect: "fade",
+			auto: true,
+			interval: 4000
+		},
+		effect: {
+			fade: {
+			speed: 1500,
+			crossfade: true
+			}
+		},
+		pagination: {
+			active: true
+		},
+		navigation:{
+			active: false
+		}
+	});
+});
+
+</script>
+
+</body>
+</html>

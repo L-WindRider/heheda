@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>jQuery 模拟横向滚动条</title>
+
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <style>
+
+        /* 主体 */
+        #lk_scrollBox {width:600px; height:320px; border:1px solid black; position:relative; overflow:hidden;  }
+        /* 滚动条 */
+        #lk_scrollbar {width:560px; height:20px; background:#CCC;  position: absolute; left:20px; bottom:0;}
+        #lk_handle {width:20px; height:20px; background:red; position:absolute; cursor:pointer;left:0px}
+        /* 内容区 */
+        #lk_scrollInner { width:600px; height:320px; overflow:hidden; padding-bottom:20px;overflow-y:hidden;overflow-x:scroll}
+        #lk_scrollInner #lk_content{ width:1800px;}
+        #lk_scrollInner #lk_content div{ }
+        /* 开始、结束按钮 */
+        #lk_begin{ position:absolute; height:20px; width:20px; background:#666; left:-20px;}
+        #lk_end{ position:absolute; height:20px; width:20px; background:#666; right:-20px;}
+
+
+
+        table{ width:100%; border:2px solid #CCC }
+        table td{ border:1px solid #ccc; padding:10px}
+
+
+    </style>
+</head>
+<body>
+
+
+<div id='lk_scrollBox'>
+
+    <div id="lk_scrollInner">
+        <div id="lk_content">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                </tr>
+                <tr>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                    <td>aaa</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="lk_scrollbar">
+        <div id="lk_begin"></div>
+        <div id="lk_handle"></div>
+        <div id="lk_end"></div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+    //20131114 link by
+
+    jQuery(function(){
+
+        oParent=$('#lk_scrollbar');
+        oDiv1 = $('#lk_handle');
+        oDiv2 = $('#lk_scrollBox');
+        oDiv3 = $('#lk_scrollInner');
+        $begin = $('#lk_begin');
+        $end = $('#lk_end');
+
+        oDiv1.width(30);
+        setTimeout(function(){
+            reScrollBox()
+        },1000)
+        //
+        reScrollBox=function (){
+            maxW = oDiv3[0].scrollWidth;
+            minW =oDiv2.width();
+            scale = minW/maxW;
+            oDiv1.width(oParent.width()*scale+30);
+
+        }
+        //拖动事件方法
+        function moveDownSlide(l){
+            if(l<0){
+                l=0;
+            }else if(l > oParent.width()-oDiv1.width()){
+                l=oParent.width()-oDiv1.width();
+            }
+            oDiv1.css('left',l);
+            var scale=l/(oParent.width()-oDiv1.width());
+            oDiv3.scrollLeft((oDiv3[0].scrollWidth-oDiv2.width())*scale);
+
+        }
+
+        //鼠标滚轮事件
+        oDiv3.bind('scroll',function(){
+            var scale=(oDiv3[0].scrollWidth-oDiv2.width())/(oParent.width()-oDiv1.width());
+            var t = $(this).scrollLeft()/scale;
+            oDiv1.css('left',t)
+
+        });
+        //鼠标拖动事件
+        oDiv1[0].onmousedown=function (ev){
+            ev=ev||window.event;
+            var disX=ev.clientX - oDiv1.position().left;
+
+            document.onmousemove=function (ev){
+                ev=ev||window.event;
+                var l=ev.clientX-disX;
+                moveDownSlide(l);
+            };
+            document.onmouseup=function (){
+                document.onmousemove=null;
+                document.onmouseup=null;
+            };
+            $(document).bind('selectstart',function(ev){  // 防止页面内容被选中 IE
+                return false;
+            });
+        };
+        //键盘上下事件
+        $(window).keydown(function(ev){
+
+            var sLeft = oDiv3.scrollLeft();
+            var maxW = oDiv3[0].scrollWidth - oDiv3.width();
+
+            switch(ev.keyCode) {
+                case 37:
+                    funLeft(sLeft - 50 > 0 ? sLeft - 50 : 0);
+                    break;
+                case 39:
+                    funLeft(sLeft + 50 < maxW ? sLeft + 50 : maxW);
+                    break;
+            }
+            function funLeft(sLeft){
+                oDiv3.scrollLeft(sLeft)
+                var t = oDiv3.scrollLeft()*scale;
+                var maxT = oParent.width() - oDiv1.width();
+                oDiv1.css('left',(t < maxT ? t : maxT) );
+
+            }
+
+        })
+        $begin.click(function(){
+
+            moveDownSlide(0);
+
+        })
+        $end.click(function(){
+
+            moveDownSlide(1000);//1000为大于宽度的值
+
+        })
+    });
+
+
+</script>
+
+
+</body>
+</html>

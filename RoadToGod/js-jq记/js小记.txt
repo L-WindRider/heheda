@@ -1,0 +1,47 @@
+console.log(xx);//可以在浏览器中查看元素
+alert(xx);//弹出元素框
+onclick="window.open('/vshop/HelpDetail.aspx')"//打开链接
+onclick="javascript:phone()function phone() {window.location.href = 'tel:400-055-4855';}//打电话
+加载顺序
+window.onload = function () {}//加载完成(包括图片)之后执行
+$(document).ready(function(){})可以简写成$(function(){}//是DOM结构绘制完毕后就执行，不必等到加载完毕
+js
+ document.getElementById('qqqqq').style.display = "none";/隐藏id
+ document.getElementById("tglbjindutiao").scrollWidth;//获取id的实际宽度是多少.style.width;可以获取宽度的百分比
+（详见js获取宽高详记.txt）
+ document.getElementById('tglbjindutiao').className = "test"; //输出id为tglbjindutiao的class为test
+ 
+ //js获取body下的某一张图片
+ document.getElementsByClassName("qq");//获取整个页面class为qq的标签
+ var classElements = document.getElementsByTagName("img");
+ //var classElements = document.getElementById("body").getElementsByTagName("img");//获取某个ID下的
+    var src = classElements[0].src;//[0]代表第一张，[classElements.length - 1]代表最后一张
+        alert(src);
+ 
+
+jquery
+1、下拉缓慢加载$("#box").show();$("#box").animate({height:"300px"});
+   详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+2、 jQuery写底部获取链接赋值
+    $(".b-nav li").removeClass("active");//去除class为b-nav下li标签的class为active
+        var str = window.location.href.toString();//获取链接
+        if (str.indexOf("CutShopMemberCenter.aspx") >= 0)//模糊判断
+            $(".b-nav").find("li:eq(2)").addClass("active");//利用数组赋值由1到最后一个li的class
+3、去掉字符串的空格	a=$.trim(a);//去掉a包含字段中的空格	
+   alert($(document).attr("title"));//获取title值.
+   $(document).attr("title","我被修改啦.哈哈");//修改title值
+   $("#swiper-slidecptp").html();//获取id下的html
+   $("#swiper-slidecptp").text();//获取id下的文字
+   $("#aoruiwgwtp").height();//获取ID的高度（页面显示）
+   $("#shoucang").text("Hello world!");//给id添加文本内容
+   $("#test2").html("<b>Hello world!</b>");//给id添加html
+   $(".slidesjs-control").css({ height: qqq + "px" });//给class加css样式
+   $("p").removeClass("high"); //删除一个class
+   $("p").removeClass(); //删除所有class
+   //js获取Class下的某一张图片
+   $(".qqqq:eq(0)");//相同class的第一张
+   $(".qqqq").eq($(".qqqq").length - 1).find("img").attr("src");//相同class的最后一张
+   $("#collect").attr("href", "default.aspx");//换ID下的某个属性的值
+
+   
+	

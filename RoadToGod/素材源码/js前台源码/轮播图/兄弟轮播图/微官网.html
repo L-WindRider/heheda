@@ -1,0 +1,127 @@
+ <!doctype html>
+<html >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="cleartype" content="on">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui">
+  <meta name="format-detection" content="telephone=no, email=no">
+  <meta name="apple-itunes-app" content="app-id=507161324">
+  <title ng-bind="Page.title" class="ng-binding">微官网</title>
+  <meta name="theme-color" content="#ffffff">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="stylesheet" type="text/css" href="css/xiongdi.css">
+  <link rel="stylesheet" type="text/css" href="css/focus.css" />
+  <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<div class="box_main">
+    <!--banner内容开始-->
+    <div class="c-rec i-rec">
+        <div id="demo01" class="flexslider  focus-banner clear">
+            <ul class="slides clearfox">
+                <li><div class="img"><a><img src="images/wgw_0.jpg"></a></div></li>
+                <li><div class="img"><a><img src="images/wgw_0.jpg"></a></div></li>
+                <li><div class="img"><a><img src="images/wgw_0.jpg"></a></div></li>
+                <li><div class="img"><a><img src="images/wgw_0.jpg"></a></div></li>
+            </ul>
+        </div>
+    </div>
+	<script type="text/javascript" src="js/slider.js"></script> 
+	<script type="text/javascript">
+	$(function(){
+
+		$('#demo01').flexslider({
+			animation: "slide",
+			direction:"horizontal",
+			easing:"swing"
+		});
+
+		
+	});
+
+	$(".all-menu").children('ul').children('li').click(function() {
+		$(".all-menu").children('ul').children('li').removeClass("on");
+		$(this).addClass("on");
+
+	});
+
+
+
+	$(".index-menu").children('li').click(function() {
+		$(".index-menu").children('li').removeClass("on");
+		$(this).addClass("on");
+	});
+
+	$(".index-menu ").children(".index-menu-tab").first().toggle(function(){
+		$(".sweet-overlay").css({"display":"block"});
+		$(".all-menu").css({"display":"block"});
+		$(".all-menu").children('ul').children('li').first().addClass("on");
+		$(this).addClass("on");
+		
+		},function(){
+		$(".sweet-overlay").css({"display":"none"});
+		$(".all-menu").css({"display":"none"});
+		$(".all-menu").children('ul').children('li').first().removeClass("on");
+		$(this).removeClass("on");
+			
+			});
+	</script>
+	<!--微官网内容-->
+	<div id="divOmnContent">
+		<div class="tpart1">
+			<div class="tpart1_1 float-l"><a href="#"><img src="images/wgw_1.jpg"></a></div>
+			<div class="tpart1_2 float-r"><a href="#"><img src="images/wgw_2.jpg"></a></div>
+		</div>
+		<div class="tpart2">
+			<div class="tpart2_1 float-l">
+				<div class="tpart2_1_1 float-l"><a href="#"><img src="images/wgw_3.jpg"></a></div>
+				<div class="tpart2_1_2 float-l"><a href="#"><img src="images/wgw_7.jpg"></a></div>
+			</div>
+			<div class="tpart2_2 float-r">
+				<div class="tpart2_2_1">
+					<div class="tpart2_2_1_1 float-l"><a href="#"><img src="images/wgw_4.jpg"></a></div>
+					<div class="tpart2_2_1_2 float-r"><a href="#"><img src="images/wgw_5.jpg"></a></div>
+				</div>
+				<div class="tpart2_2_2"><a href="#"><img src="images/wgw_6.jpg"></a></div>
+				<div class="tpart2_2_3">
+					<div class="tpart2_2_3_1 float-l"><a href="#"><img src="images/wgw_8.jpg"></a></div>
+					<div class="tpart2_2_3_2 float-r"><a href="#"><img src="images/wgw_9.jpg"></a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--公共底部内容-->
+    <div class="d-zw"></div>
+    <div class="index-buttom">
+            <ul class="b-nav clear">
+               <li class="active">
+                  <a href="">
+                    <i class="icon"></i>
+                    <em>外卖</em>
+                  </a>
+                  
+               </li>
+               <li>
+                   <a href="">
+                    <i class="icon"></i>
+                    <em>买单</em>
+                  </a>
+               </li>
+               <li>
+                   <a href="">
+                    <i class="icon"></i>
+                    <em>我的</em>
+                  </a>
+               </li>
+            </ul>
+   </div>    
+</div>
+</body>
+</html>

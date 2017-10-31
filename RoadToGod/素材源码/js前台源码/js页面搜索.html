@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/2000/REC-xhtml1-20000126/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<META name="Author" content="Sheneyan" />
+<script type="text/javascript">
+    function encode(s) {
+        return s.replace(/&/g, "&").replace(/</g, "<").replace(/>/g, ">").replace(/([\\\.\*\[\]\(\)\$\^])/g, "\\$1");
+    }
+    function decode(s) {
+        return s.replace(/\\([\\\.\*\[\]\(\)\$\^])/g, "$1").replace(/>/g, ">").replace(/</g, "<").replace(/&/g, "&");
+    }
+    function highlight(s) {
+        if (s.length == 0) {
+            alert('搜索关键词未填写！');
+            return false;
+        }
+        s = encode(s);
+        var obj = document.getElementsByTagName("body")[0];
+        var t = obj.innerHTML.replace(/<span\s+class=.?highlight.?>([^<>]*)<\/span>/gi, "$1");
+        obj.innerHTML = t;
+        var cnt = loopSearch(s, obj);
+        t = obj.innerHTML
+        var r = /{searchHL}(({(?!\/searchHL})|[^{])*){\/searchHL}/g
+        t = t.replace(r, "<span class='highlight'>$1</span>");
+        obj.innerHTML = t;
+        alert("搜索到关键词" + cnt + "处")
+    }
+    function loopSearch(s, obj) {
+        var cnt = 0;
+        if (obj.nodeType == 3) {
+            cnt = replace(s, obj);
+            return cnt;
+        }
+        for (var i = 0, c; c = obj.childNodes[i]; i++) {
+            if (!c.className || c.className != "highlight")
+                cnt += loopSearch(s, c);
+        }
+        return cnt;
+    }
+    function replace(s, dest) {
+        var r = new RegExp(s, "g");
+        var tm = null;
+        var t = dest.nodeValue;
+        var cnt = 0;
+        if (tm = t.match(r)) {
+            cnt = tm.length;
+            t = t.replace(r, "{searchHL}" + decode(s) + "{/searchHL}")
+            dest.nodeValue = t;
+        }
+        return cnt;
+    }
+</script>
+<style type="text/css">
+.highlight{background:green;font-weight:bold;color:white;}
+</style>
+</head>
+<body>
+<form onsubmit="highlight(this.s.value);return false;">
+<p><input name="s" id="s" title="搜索内容："/><input type="submit" value="搜索"/></p>
+</form>
+<div id="content">
+<font face=Verdana>阿里西西   www.alixixi.com   建站于2003年12月，自建站之初，就定位于提供Web开发技术资源及技术交流服务，全力打造一个国内专业的Web开发技术资源社区网站。 <br />
+    <br />
+  现阿里西西Web开发网站提供下载资源达180GB以上，其中包括Web开发必备的建站源码，网站模板素材，工具软件、服务器软件、编程软件、开发电子书籍等下载资源。同时Web开发学院还针对Web开发行业的热门开发语言提供最全面的教程文章，汇集众多程序员提供的原创技术文章资讯及网站源码，成为广大web开发工作者及程序员提升技术及资质的优秀平台。 <br />
+  <br />
+  建站多年以来，网站累计访问用户及为Web开发技术工作者服务人数已超数百万人，形成广泛的良好形象及口碑。同样，阿里西西在大家的支持和鼓励下，网站不断的充实及优化内容，历次在网友的共同支持下进行网站改版且取得非常好的效果，在各大搜索引擎站点中收藏大量来自本站的优秀教程及资源，已经成为国内具有一定影响力的web开发行业资源技术网站！ <br />
+  <br />
+  目前，阿里西西历经多次优化重组改版后，网站将更专注于web开发优秀资源及优秀技术教程的积累及技术服务，为各界web开发工作者、学习者及各类关注web开发的朋友们提供更加专业的服务。 <br />
+  <br />
+  阿里西西，一个简单而好记的名字，相信到过这里的每一个人永远也不会把它忘记。 <br />
+  阿里西西Web开发技术资源站，www.alixixi.com，每天与您共同进步！</font>
+</div>
+</body>
+</html></font>
+<a href="http://js.alixixi.com/">欢迎访问阿里西西网页特效代码站，js.alixixi.com</a>

@@ -1,0 +1,198 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<title>科瓦齿科_汇中/美/法/韩/德/日医生坐诊_享德国百年齿科经验</title>
+<link href="CSS/global.css" rel="stylesheet" type="text/css">
+<link href="CSS/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+var fn=	function ($container){
+	var $a=$container;
+	$a.find('.bd_cp_btm li').css({height: $('.bd_cp_btm').width() * 0.24 * 43 / 128});
+	var slideHeight = $a.find('.bd_cp_btm li').outerHeight(true)*2; // px
+var defHeight =  $a.find('.bd_cp_btm').height();
+if(defHeight >= slideHeight){
+	 $a.find('.bd_cp_btm').css('height' , slideHeight + 'px');
+	 $a.find('.bdcp_more').append('<a href="javascript:;">更多</a>');
+	 $a.find('.bdcp_more a').click(function(){
+		var curHeight =  $a.find('.bd_cp_btm').height();
+		if(curHeight == slideHeight){
+			 $a.find('.bd_cp_btm').animate({
+			  height: defHeight
+			}, "normal");
+			 $a.find('.bdcp_more a').html('收起');
+		}else{
+			 $a.find('.bd_cp_btm').animate({
+			 height: slideHeight
+			}, "normal");
+			 $a.find('.bdcp_more a').html('更多');
+		}
+		//return false;
+	});
+		}
+     }
+		$('.bd_cp').each(function(i,e){
+			fn($(e));
+			})	
+});
+</script>
+<script>
+    $(function(){
+	var ifshow=false;
+	  $('.ccbtn').click(function(){
+		  if(!ifshow){
+			  show();
+			  }
+			  else{
+				  hide();
+				  }
+				  ifshow=!ifshow;
+	  })
+	  $('.mnmgb_a,.mn_mzz,.mnm_fh_a').click(function(){
+		hide();
+		ifshow=false;
+	  })
+	 function show(){
+		 	$('.mn_mzz').fadeIn(200);
+		$('.mn_more').slideDown();
+		 }
+		 function hide(){
+			 $('.mn_mzz').fadeOut(200);
+		$('.mn_more').slideUp();
+			 }
+	})
+</script>
+</head>
+
+<body>
+<header>
+ <div class="hd">
+    <div class="hd_lt"><a href="javascript:;" class="ccbtn">1</a>
+       <div class="mn_more">
+          <ul>
+             <li>
+               <h5><a href="javascript:;">网站导航</a> <a href="javascript:;" class="mnm_fh_a">返回</a></h5>
+               <p><a href="javascript:;">关于科瓦</a><a href="javascript:;">科瓦医生</a><a href="javascript:;">科瓦资讯</a><a href="javascript:;">积分会员</a><a href="javascript:;">科瓦中国</a><a href="javascript:;">前沿技术</a><a href="javascript:;">科瓦牙学院</a><a href="javascript:;">投资人关系</a><a href="javascript:;">加入我们</a></p>
+             </li>
+             <li>
+               <h5><a href="javascript:;">齿科综合</a></h5>
+               <p><a href="javascript:;">牙齿修复</a><a href="javascript:;">根管治疗</a><a href="javascript:;">无痛拔牙</a><a href="javascript:;">牙周疾病</a><a href="javascript:;">牙齿美白</a><a href="javascript:;">洁牙洗牙</a></p>
+             </li>
+             <li>
+               <h5><a href="javascript:;">牙齿矫正</a></h5>
+               <p><a href="javascript:;">隐形矫正</a><a href="javascript:;">托槽矫正</a><a href="javascript:;">MBT直丝矫正</a><a href="javascript:;">龅牙矫正</a><a href="javascript:;">地包天矫正</a><a href="javascript:;">牙齿不齐矫正</a></p>
+             </li>
+             <li>
+               <h5><a href="javascript:;">牙齿种植</a></h5>
+               <p><a href="javascript:;">ALL-on4种植牙</a><a href="javascript:;">微创种植</a><a href="javascript:;">半口牙缺失</a><a href="javascript:;">2小时即刻种植牙</a><a href="javascript:;">瑞士ITI种植牙</a><a href="javascript:;">3D导航种植牙</a></p>
+             </li>
+             <li>
+               <h5><a href="javascript:;">儿童齿科</a></h5>
+               <p><a href="javascript:;">小儿龋齿</a><a href="javascript:;">小儿牙痛</a><a href="javascript:;">小儿牙黄</a><a href="javascript:;">乳牙滞留</a><a href="javascript:;">窝沟封闭</a><a href="javascript:;">涂氟</a></p>
+             </li>
+          </ul>
+          <a href="javascript:;" class="mnmgb_a">关闭</a>
+       </div>
+    </div>
+    <div class="hd_ct"><img src="images/head_logo.png" ></div>
+    <div class="hd_rt"><a href="javascript:;" class="ctbtn">2</a></div>
+  </div>
+ <ul class="hd_menu">
+   <li class="mn_dq"><a href="javascript:;" ><img src="images/mn_icon.png" ></a></li>
+   <li><a href="javascript:;" >关于科瓦</a></li>
+   <li><a href="javascript:;" >专家· 视频</a></li>
+   <li><a href="javascript:;" >特色医疗</a></li>
+   <li><a href="javascript:;" >科瓦牙学院</a></li>
+ </ul>
+</header>
+
+<article>
+<div class="hp_bn js-flickity"  data-flickity-options='{ "wrapAround": true , "prevNextButtons": false ,"autoPlay": 3000 }'>
+  <div class="hp_bn_li " style="background:url(images/banner_01.png) center 0 no-repeat; background-size:auto 180px;"><a href="javascript:;" ></a> </div>
+  <div class="hp_bn_li " style="background:url(images/banner_02.png) center 0 no-repeat; background-size:auto 180px;"><a href="javascript:;" ></a> </div>
+</div>
+<ul class="hp_fc">
+  <li><h3>科瓦综合医疗</h3><a href="javascript:;" style="background:url(images/sy_img01.png) center 0 no-repeat; background-size:auto 100%"></a></li>
+  <li><h3>国际正畸中心</h3><a href="javascript:;" style="background:url(images/sy_img02.png) center 0 no-repeat; background-size:auto 100%"></a></li>
+  <li><h3>口腔种植中心</h3><a href="javascript:;" style="background:url(images/sy_img03.png) center 0 no-repeat; background-size:auto 100%"></a></li>
+  <li><h3>儿童齿科中心</h3><a href="javascript:;" style="background:url(images/sy_img04.png) center 0 no-repeat; background-size:auto 100%"></a></li>
+</ul>
+<div class="hp_doctor js-flickity"  data-flickity-options='{ "wrapAround": true , "prevNextButtons": false ,"autoPlay": 3500 }'>
+  <div class="hpd_li"><a href="javascript:;" style=" background:url(images/sy_img05.png) center center no-repeat; background-size:auto 100%;" ></a></div>
+  <div class="hpd_li"><a href="javascript:;" style=" background:url(images/sy_img05.png) center center no-repeat; background-size:auto 100%;" ></a></div>
+</div>
+</article>
+
+
+<footer>
+<div class="bd_cp">
+  <div class="bd_cp_top">Global lnsurance Direct Biling国际保险直接核算</div>
+  <ul class="bd_cp_btm">
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_04.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_03.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_02.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+    <li><a href="javascript:;" ><img src="images/hzhb_img_01.png" ></a></li>
+  </ul>
+  <div class="bdcp_more"></div>
+</div>
+
+<ul class="bd_link">
+  <li><a href="javascript:;"><span><img src="images/fl_icon_01.png"></span><h5>积分会员</h5></a></li>
+  <li><a href="javascript:;"><span><img src="images/fl_icon_02.png"></span><h5>科瓦资讯</h5></a></li>
+  <li><a href="javascript:;"><span><img src="images/fl_icon_03.png"></span><h5>前沿技术</h5></a></li>
+  <li><a href="javascript:;"><span><img src="images/fl_icon_04.png"></span><h5>投资人关系</h5></a></li>
+  <li><a href="javascript:;"><span><img src="images/fl_icon_05.png"></span><h5>加入我们</h5></a></li>
+  <li><a href="javascript:;"><span><img src="images/fl_icon_06.png"></span><h5>科瓦中国</h5></a></li>
+</ul>
+
+<ul class="bd_xf">
+  <li><a href="javascript:;"></a></li>
+  <li><a href="javascript:;">在线咨询</a></li>
+  <li><a href="javascript:;">微信咨询</a></li>
+  <li><a href="javascript:;">免费电话</a></li>
+</ul>
+</footer>
+
+<div class="mn_mzz"></div>
+<script src="js/flickity-docs.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="layer/jquery-3.1.0.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <style type="text/css">
+        input, body {
+            font-size: 16px;
+        }
+    </style>
+    <style type="text/css">
+        .address{width: 100%;border: 1px solid #dddddd;float:left;}
+        .address1{border-bottom: 1px solid #dddddd;float:left;width:100%;line-height:20px;}
+        .address1 a{float: right;margin-right: 10px;color: #1c78e9;}
+        .address2{width:100%;float:left;}
+        .address21{width:100px;float:left;}
+        .address22{width:850px;float:left;}
+        .address22 p{width:100%;float:left;display:none;}
+        .address22 p:nth-child(1),.address22 p:nth-child(2),.address22 p:nth-child(2){display:block;}
+        .address22 p:hover{background:#fcedda;}
+        .address22 p span{margin-left:10px;}
+        .address22 p label{margin-right:40px;float:right;display:none;}
+        .address22 p:hover label{display:block;}
+        .address22 p label a{margin-left: 10px;color: #1c78e9;}
+        .address23{width:100%;float:left;text-align:center;}
+        .address23 span{background:#f5f5f5;padding:2px 10px;}
+        .address23 label{ transform:rotate(90deg);}
+    </style>
+    <script type="text/javascript">
+        //信息框
+        function qwe() {
+            //自定页
+            layer.open({
+                title: ['我是标题，呵呵哒', 'background:#b2002e; color:#fff;'],
+                type: 1,
+                skin: 'layui-layer-demo', //样式类名
+                closeBtn: 1, //不显示关闭按钮
+                shift: 2,
+                shadeClose: true, //开启遮罩关闭
+                content: '内容'
+            });
+           
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="呵呵1" onclick="qwe()" />
+</body>
+</html>

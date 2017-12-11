@@ -3,25 +3,30 @@
 <head>
     <title></title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <script src="js/windrider.js"></script>
     <style>
-    .clip{display: none;}
-    .clip img{position:fixed;width: 100%;top: 0;left: 0;}
-    .clip .clipCoverDiv{position:fixed;width: 100%;height: 100%;top: 0;left: 0;}
-    .clip p{position:fixed;width: 100%;top: 0;left: 0;color: #FFF;}
+    body{margin: 0;}
+    .posiFixed{position:fixed;width: 100%;top: 0;left: 0;}
+    .clipImg{display: none;}
+    .clipCoverImg{left: 100%;top:-73.5px}
+    .clipCoverDiv{height: 100%;display: none;}
+    .clip .clipImg{display: block;}
+    .clip .clipCoverImg{left: 0;}
+    .clip .clipCoverDiv{display: block;}
     </style>
 </head>
-<input type="file" id="upload" accept="image/png,image/jpeg">
-<div id="clip" class="clip">
-    <img id="clipImg" class="clipImg" />
-    <img id="clipCoverImg" class="clipCoverImg" src="images/cover.png" />
-    <div id="clipCoverDiv" class="clipCoverDiv"></div>
-    <p id="event"></p>
+<div id="clip">
+        <input type="file" id="upload" accept="image/png,image/jpeg">
+        <img id="clipImg" class="clipImg posiFixed" />
+        <img id="clipCoverImg" class="clipCoverImg posiFixed" src="images/cover.png" />
+        <div id="clipCoverDiv" class="clipCoverDiv posiFixed"></div>
+        <p id="event" class="posiFixed"></p>
+        <p id="ev" class="posiFixed"></p>
 </div>
-<body>
+<body id="body">
 <script>
-    var clip = document.getElementById("clip");//弹出框
+    var clip = document.getElementById("clip");//父级
     var upload = document.getElementById("upload");//上传图片input按钮
     var clipImg = document.getElementById("clipImg");//剪裁图片
     var clipCoverImg = document.getElementById("clipCoverImg");//剪裁遮盖
@@ -29,7 +34,8 @@
     var circleRadius = window.innerWidth*560/750/2;//原型半径
     var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
     var circleY=window.innerHeight/2-circleRadius;//圆形X坐标
-    console.log(circleRadius,circleX,circleY);
+    var touchState=true;//touch事件是否执行
+
     upload.onchange = function () {
         var file = upload.files[0];
         if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
@@ -37,62 +43,99 @@
             console.log(file.type);
             return;
         }
+        clip.className="clip";
         clipImg.src=window.URL.createObjectURL(upload.files[0]);
-        clip.style.display="block";
-        clipCoverImg.onload=function(){
-            clipCoverImg.style.top=(window.innerHeight-clipCoverImg.height)/2+"px";
-        }
-        if(clipCoverImg.height){
-            clipCoverImg.style.top=(window.innerHeight-clipCoverImg.height)/2+"px";
-        }
+        // clipCoverImg.style.top=(window.innerHeight-window.innerWidth*2)/2+"px";
     }
 
-    clipCoverDiv.addEventListener('touchstart',touchGesture, false);//一个手指触摸
-    clipCoverDiv.addEventListener('touchmove',touchGesture, false);//一个手指移动
-    clipCoverDiv.addEventListener('touchend',touchGesture, false);//一个手指离开
+    clipCoverDiv.addEventListener('touchstart',touch, false);//一个手指触摸
+    clipCoverDiv.addEventListener('touchmove',touch, false);//一个手指移动
+    clipCoverDiv.addEventListener('touchend',touch, false);//一个手指离开
 
-    clipCoverDiv.addEventListener('gesturestart',touchGesture, false);//另一个手指触摸
-    clipCoverDiv.addEventListener('gesturechange',touchGesture, false);//任何一个手指移动
-    clipCoverDiv.addEventListener('gestureend',touchGesture, false);//任何一个手指离开
+    clipCoverDiv.addEventListener('gesturestart',Gesture, false);//另一个手指触摸
+    clipCoverDiv.addEventListener('gesturechange',Gesture, false);//任何一个手指移动
+    clipCoverDiv.addEventListener('gestureend',Gesture, false);//任何一个手指离开
 
     var gdx,gdy,ydx,ydy;//定义原始x、y and 移动x、y
     var state;//定义执行进度
-    function touchGesture(event){
-        var event = event || window.event;
+    function Gesture(event) {
         document.getElementById('event').innerHTML=event.type;
+        document.getElementById('ev').innerHTML=event.type;
         state=event.type;
         switch(event.type){
-            case "touchstart":{
-                gdx=event.touches[0].clientX;
-                gdy=event.touches[0].clientY;
+            case "gesturestart":{
+                touchState=false;
                 break;
             }
-            case "touchmove": {
-                ydx=clipImg.offsetLeft-(gdx-event.changedTouches[0].clientX);
-                ydy=clipImg.offsetTop-(gdy-event.changedTouches[0].clientY);
-               
-                if (clipImg.offsetLeft>circleX&&ydx>=clipImg.offsetLeft) {
-                    ydx=circleX;
-                }
-                if(clipImg.width+clipImg.offsetLeft<circleX+circleRadius*2){
-                    ydx=circleX+circleRadius*2;
-                }
-                clipImg.style.left = ydx + "px";
-                gdx = event.changedTouches[0].clientX;
+            case "gesturechange":{
+                event.preventDefault();
+                document.getElementById('ev').innerHTML="gesture start (rotation=" + event.rotation + ',scale=' + event.scale + ')';
+                if(event.rotation>0&&event.rotation<45){
 
-                if(clipImg.offsetTop>circleY&&ydy>=clipImg.offsetTop){
-                    ydy=circleY;
                 }
-                clipImg.style.top = ydy + "px";
-                gdy = event.changedTouches[0].clientY;
+                
                 break;
             }
-            case "touchend":{
+            case "gestureend":{
+                touchState=true;
+                return;
                 break;
             }
         }
-        event.preventDefault();
     }
+
+    function touch(event) {
+            if (touchState) {
+                var event = event || window.event;
+                document.getElementById('event').innerHTML = event.type;
+                state = event.type;
+                switch (event.type) {
+                    case "touchstart": {
+                        gdx = event.touches[0].clientX;
+                        gdy = event.touches[0].clientY;
+                        break;
+                    }
+                    case "touchmove": {
+                        ydx = clipImg.offsetLeft - (gdx - event.changedTouches[0].clientX);
+                        ydy = clipImg.offsetTop - (gdy - event.changedTouches[0].clientY);
+
+                        if (clipImg.offsetLeft > circleX && ydx >= clipImg.offsetLeft) {
+                            // ydx=circleX;
+                            return;
+                        }
+                        if (clipImg.width + clipImg.offsetLeft < circleX + circleRadius * 2 && ydx <= clipImg.offsetLeft) {
+                            // ydx=-(clipImg.width-(circleX+circleRadius*2));
+                            return;
+                        }
+                        clipImg.style.left = ydx + "px";
+                        gdx = event.changedTouches[0].clientX;
+
+                        if (clipImg.offsetTop > circleY && ydy >= clipImg.offsetTop) {
+                            // ydy=circleY;
+                            return;
+                        }
+                        if (clipImg.height + clipImg.offsetTop < circleY + circleRadius * 2 && ydy <= clipImg.offsetTop) {
+                            // ydy=-(clipImg.height-(circleY+circleRadius*2));
+                            return;
+                        }
+                        clipImg.style.top = ydy + "px";
+                        gdy = event.changedTouches[0].clientY;
+                        event.preventDefault();
+                        break;
+                    }
+                    case "touchend": {
+                        break;
+                    }
+                    case "gesturechange": {
+                        document.getElementById('ev').innerHTML = event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY;
+                        break;
+                    }
+                }
+            }
+
+
+
+        }
 </script>
 
 </body>

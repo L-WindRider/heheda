@@ -5,7 +5,9 @@
         if (url != null) return unescape(url[2]);
         return null;
 	}
-	windRider.Alert=function(name){
-        alert(name);
+	windRider.Alert=function(heheda,name1,name2){
+        if(name1&&name2){
+            console.log(name1,name2);     
+        }
     }
 })(window);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/windrider.js"></script>
+</head>
+<img id="resimg" />
+<input type="file" id="upload" accept="image/png,image/jpeg">
+<canvas id="canvas"></canvas>
+<body>
+    <script>
+        var upload = document.getElementById("upload");
+        var resimg = document.getElementById("resimg");
+        upload.onchange = function () {
+            var Img=new Image();
+            var file = upload.files[0];
+            if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+                alert('不是有效的图片');
+                console.log(file.type);
+                return;
+            }
+            Img.src=window.URL.createObjectURL(upload.files[0]);
+           windRider.clipImage(Img,128,128,resimg,function(){
+            console.log(resimg.src);
+           });
+          
+            /**base64**/
+            // var reader = new FileReader();
+            // reader.onload = function (e) {
+            //     var data = e.target.result;
+            //     resimg.src = data;
+            // }
+            // // reader.readAsDataURL(file);
+        }
+    </script>
+
+</body>
+
+</html>

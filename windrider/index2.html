@@ -14,6 +14,7 @@
     .clip .clipImg{display: block;}
     .clip .clipCoverImg{left: 0;}
     .clip .clipCoverDiv{display: block;}
+    p{color: #FFF;}
     </style>
 </head>
 <div id="clip">
@@ -52,13 +53,15 @@
     clipCoverDiv.addEventListener('touchmove',touch, false);//一个手指移动
     clipCoverDiv.addEventListener('touchend',touch, false);//一个手指离开
 
-    clipCoverDiv.addEventListener('gesturestart',Gesture, false);//另一个手指触摸
-    clipCoverDiv.addEventListener('gesturechange',Gesture, false);//任何一个手指移动
-    clipCoverDiv.addEventListener('gestureend',Gesture, false);//任何一个手指离开
+    clipCoverDiv.addEventListener('gesturestart',gesture, false);//另一个手指触摸
+    clipCoverDiv.addEventListener('gesturechange',gesture, false);//任何一个手指移动
+    clipCoverDiv.addEventListener('gestureend',gesture, false);//任何一个手指离开
 
     var gdx,gdy,ydx,ydy;//定义原始x、y and 移动x、y
+    var  gesx, gesy,ydx,ydy;//定义原始x、y and 移动x、y
+
     var state;//定义执行进度
-    function Gesture(event) {
+    function gesture(event) {
         document.getElementById('event').innerHTML=event.type;
         document.getElementById('ev').innerHTML=event.type;
         state=event.type;

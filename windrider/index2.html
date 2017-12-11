@@ -1,67 +1,100 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>By：DragonDean</title>
-<script type="text/javascript">
-//下面用于图片上传预览功能
-function setImagePreview(avalue) {
-　　var docObj=document.getElementById("doc");
- 
-　　var imgObjPreview=document.getElementById("preview");
-　　if(docObj.files &&docObj.files[0])
-　　{
-　　　　//火狐下，直接设img属性
-　　　　imgObjPreview.style.display = 'block';
-　　　　imgObjPreview.style.width = '150px';
-　　　　imgObjPreview.style.height = '180px'; 
- 
-　　　　//火狐7以上版本不能用上面的getAsDataURL()方式获取，需要一下方式
-　　　　imgObjPreview.src = window.URL.createObjectURL(docObj.files[0]);
-　　}
-　　else
-　　{
-　　　　//IE下，使用滤镜
-　　　　docObj.select();
-　　　　var imgSrc = document.selection.createRange().text;
-　　　　var localImagId = document.getElementById("localImag");
-　　　　//必须设置初始大小
-　　　　localImagId.style.width = "150px";
-　　　　localImagId.style.height = "180px";
-　　　　//图片异常的捕捉，防止用户修改后缀来伪造图片
-　　　　try{
-　　　　　　localImagId.style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale)";
-　　　　　　localImagId.filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = imgSrc;
-　　　　}
-　　　　catch(e)
-　　　　{
-　　　　　　alert("您上传的图片格式不正确，请重新选择!");
-　　　　　　return false;
-　　　　}
-　　　　imgObjPreview.style.display = 'none';
-　　　　document.selection.empty();
-　　}
-　　return true;
-}
- 
-</script>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/windrider.js"></script>
+    <style>
+    .clip{display: none;}
+    .clip img{position:fixed;width: 100%;top: 0;left: 0;}
+    .clip .clipCoverDiv{position:fixed;width: 100%;height: 100%;top: 0;left: 0;}
+    .clip p{position:fixed;width: 100%;top: 0;left: 0;color: #FFF;}
+    </style>
 </head>
+<input type="file" id="upload" accept="image/png,image/jpeg">
+<div id="clip" class="clip">
+    <img id="clipImg" class="clipImg" />
+    <img id="clipCoverImg" class="clipCoverImg" src="images/cover.png" />
+    <div id="clipCoverDiv" class="clipCoverDiv"></div>
+    <p id="event"></p>
+</div>
 <body>
-　　<table width="100%" border="0" cellspacing="0" cellpadding="0">
-　　　　<tbody>
-　　　　　　<tr>
-　　　　　　　　<td height="101" align="center">
-　　　　　　　　　　<div id="localImag">
-　　　　　　　　　　　　<img id="preview" src="http://pic.cnblogs.com/face/1023040/20160923152523.png" width="150" height="180" style="display: block; width: 150px; height: 180px;">
-　　　　　　　　　　</div>
-　　　　　　　　</td>
-　　　　　　</tr>
-　　　　　　<tr>
-　　　　　　　　<td align="center" style="padding-top:10px;">
-　　　　　　　　　　<input type="file" name="file" id="doc" style="width:150px;" onchange="javascript:setImagePreview();">
-　　　　　　　　</td>
-　　　　　　</tr>
-　　　　</tbody>
-　　</table>
+<script>
+    var clip = document.getElementById("clip");//弹出框
+    var upload = document.getElementById("upload");//上传图片input按钮
+    var clipImg = document.getElementById("clipImg");//剪裁图片
+    var clipCoverImg = document.getElementById("clipCoverImg");//剪裁遮盖
+    var clipCoverDiv = document.getElementById("clipCoverDiv");//滑动触发div
+    var circleRadius = window.innerWidth*560/750/2;//原型半径
+    var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
+    var circleY=window.innerHeight/2-circleRadius;//圆形X坐标
+    console.log(circleRadius,circleX,circleY);
+    upload.onchange = function () {
+        var file = upload.files[0];
+        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+            alert('不是有效的图片');
+            console.log(file.type);
+            return;
+        }
+        clipImg.src=window.URL.createObjectURL(upload.files[0]);
+        clip.style.display="block";
+        clipCoverImg.onload=function(){
+            clipCoverImg.style.top=(window.innerHeight-clipCoverImg.height)/2+"px";
+        }
+        if(clipCoverImg.height){
+            clipCoverImg.style.top=(window.innerHeight-clipCoverImg.height)/2+"px";
+        }
+    }
+
+    clipCoverDiv.addEventListener('touchstart',touchGesture, false);//一个手指触摸
+    clipCoverDiv.addEventListener('touchmove',touchGesture, false);//一个手指移动
+    clipCoverDiv.addEventListener('touchend',touchGesture, false);//一个手指离开
+
+    clipCoverDiv.addEventListener('gesturestart',touchGesture, false);//另一个手指触摸
+    clipCoverDiv.addEventListener('gesturechange',touchGesture, false);//任何一个手指移动
+    clipCoverDiv.addEventListener('gestureend',touchGesture, false);//任何一个手指离开
+
+    var gdx,gdy,ydx,ydy;//定义原始x、y and 移动x、y
+    var state;//定义执行进度
+    function touchGesture(event){
+        var event = event || window.event;
+        document.getElementById('event').innerHTML=event.type;
+        state=event.type;
+        switch(event.type){
+            case "touchstart":{
+                gdx=event.touches[0].clientX;
+                gdy=event.touches[0].clientY;
+                break;
+            }
+            case "touchmove": {
+                ydx=clipImg.offsetLeft-(gdx-event.changedTouches[0].clientX);
+                ydy=clipImg.offsetTop-(gdy-event.changedTouches[0].clientY);
+               
+                if (clipImg.offsetLeft>circleX&&ydx>=clipImg.offsetLeft) {
+                    ydx=circleX;
+                }
+                if(clipImg.width+clipImg.offsetLeft<circleX+circleRadius*2){
+                    ydx=circleX+circleRadius*2;
+                }
+                clipImg.style.left = ydx + "px";
+                gdx = event.changedTouches[0].clientX;
+
+                if(clipImg.offsetTop>circleY&&ydy>=clipImg.offsetTop){
+                    ydy=circleY;
+                }
+                clipImg.style.top = ydy + "px";
+                gdy = event.changedTouches[0].clientY;
+                break;
+            }
+            case "touchend":{
+                break;
+            }
+        }
+        event.preventDefault();
+    }
+</script>
+
 </body>
+
 </html>

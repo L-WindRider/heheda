@@ -1,62 +1,74 @@
-<!doctype html>  
-<html>  
-<head>  
-  <meta charset="utf-8">  
-  <!------------------------浏览器内核------------------------>  
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  
-  <!--如果安装了GCF,则使用GCF来渲染页面.  
-  如果未安装GCF,则使用最高版本的IE内核进行渲染.-->  
-  <meta name="renderer" content="webkit">  
-  <!--使用360等国内主流浏览器内核;  
-  content的取值为webkit,ie-comp,ie-stand之一,区分大小写.  
-  分别代表用webkit内核,IE兼容内核,IE标准内核.-->  
-  <meta http-equiv="Cache-Control" content="no-siteapp" />  
-  <!---禁止百度转码-->  
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">  
-  <title>图片放大测试</title>  
-<style>
-.enlarge-blackground{background-color: #000 !important;position: fixed;top:0;left: 100%;overflow: hidden;z-index: 99999;width: 100%;}  
-.enlarge-img-box{margin: 0;position: absolute;width: 1999px;}  
-.enlarge-div{float: left;}  
-.enlarge-number-tips{width:40px;height:30px;background-color:#555;background-clip:padding-box;border-radius: 50%;position: absolute;line-height: 30px;text-align: center;letter-spacing:-2px;right: 20px;top:20px;color: #f8f8f8;}  
-.enlarge-number-tips-allnumber{font-size: 0.8em;}  
-</style>
-</head>  
-<body>  
-<div class='enlarge-blackground '>  
-   <div class='enlarge-number-box'>  
-    <div class='enlarge-number-tips'>  
-      <font class='enlarge-number-tips-indexpic'>1</font>  
-      /  
-      <font class='enlarge-number-tips-allnumber'>0</font>  
-    </div>  
-  </div>  
-    <div class='enlarge-img-box'>  
-      <div class='enlarge-div '>  
-           <img class='enlarge-img' src='1.jpg'/>  
-      </div>  
-      <div class='enlarge-div '>  
-        <img class='enlarge-img' src="2.jpg"/>  
-      </div>  
-      <div class='enlarge-div '>  
-        <img class='enlarge-img' src="3.jpg"/>  
-      </div>  
-       <div class='enlarge-div '>  
-        <img class='enlarge-img' src="4.jpg"/>  
-      </div>  
-       <div class='enlarge-div '>  
-        <img class='enlarge-img' src="5.jpg"/>  
-      </div>  
-    </div>  
-</div>  
-<button>图片预览</button>  
-</body>  
-<script src='jquery.min.js'></script>  
-<script src='enlargepicture.js'></script>  
-<script>  
-startenLargePicture();  
-  
-$('button').on('click',function(){  
-  enLargePicture();  
-})  
-</script> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="box" style="height:100px;background:#000;"></div>
+  <script>
+var box=document.querySelector("#box");
+    var boxGesture=setGesture(box);  //得到一个对象
+    boxGesture.gesturestart=function(){  //双指开始
+        box.style.backgroundColor="yellow";
+    };
+    boxGesture.gesturemove=function(event){  //双指移动
+        box.innerHTML = event.scale+"<br />"+event.rotation;
+        box.style.transform="scale("+event.scale+") rotate("+event.rotation+"deg)";//改变目标元素的大小和角度
+    };
+    boxGesture.gestureend=function(){  //双指结束
+        // box.innerHTML="";
+        // box.style.cssText="background-color:red";
+    };
+
+
+
+
+
+
+
+    function setGesture(el){
+    var obj={}; //定义一个对象
+    var istouch=false;
+    var start=[];
+    el.addEventListener("touchstart",function(event){
+        if(event.touches.length>=2){  //判断是否有两个点在屏幕上
+            istouch=true;
+            start=event.touches;  //得到第一组两个点
+            obj.gesturestart&&obj.gesturestart.call(el); //执行gesturestart方法
+        };
+    },false);
+    el.addEventListener("touchmove",function(event){
+      event.preventDefault();
+        if(event.touches.length>=2&&istouch){
+            var now=event.touches;  //得到第二组两个点
+            var scale=getDistance(now[0],now[1])/getDistance(start[0],start[1]); //得到缩放比例，getDistance是勾股定理的一个方法
+            var rotation=getAngle(now[0],now[1])-getAngle(start[0],start[1]);  //得到旋转角度，getAngle是得到夹角的一个方法
+            event.scale=scale.toFixed(2);
+            event.rotation=rotation.toFixed(2);
+            obj.gesturemove&&obj.gesturemove.call(el,event);  //执行gesturemove方法
+        };
+    },false);
+    el.addEventListener("touchend",function(event){
+        if(istouch){
+            istouch=false;
+            obj.gestureend&&obj.gestureend.call(el);  //执行gestureend方法
+        };
+    },false);
+    return obj;
+};
+function getDistance(p1, p2) {
+    var x = p2.pageX - p1.pageX,
+        y = p2.pageY - p1.pageY;
+    return Math.sqrt((x * x) + (y * y));
+};
+function getAngle(p1, p2) {
+    var x = p1.pageX - p2.pageX,
+        y = p1.pageY- p2.pageY;
+    return Math.atan2(y, x) * 180 / Math.PI;
+};
+  </script>
+</body>
+</html>

@@ -34,7 +34,7 @@
     var clipCoverDiv = document.getElementById("clipCoverDiv");//滑动触发div
     var circleRadius = window.innerWidth*560/750/2;//原型半径
     var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
-    var circleY=window.innerHeight/2-circleRadius;//圆形X坐标
+    var circleY=window.innerHeight/2-circleRadius;//圆形Y坐标
     var touchState=true;//touch事件是否执行
 
     upload.onchange = function () {
@@ -58,34 +58,38 @@
     clipCoverDiv.addEventListener('gestureend',gesture, false);//任何一个手指离开
 
     var gdx,gdy,ydx,ydy;//定义原始x、y and 移动x、y
-    var  gesx, gesy,ydx,ydy;//定义原始x、y and 移动x、y
+   // var  gesx, gesy,ydx,ydy;//定义原始x、y and 移动x、y
 
     var state;//定义执行进度
-    function gesture(event) {
-        document.getElementById('event').innerHTML=event.type;
-        document.getElementById('ev').innerHTML=event.type;
-        state=event.type;
-        switch(event.type){
-            case "gesturestart":{
-                touchState=false;
-                break;
-            }
-            case "gesturechange":{
-                event.preventDefault();
-                document.getElementById('ev').innerHTML="gesture start (rotation=" + event.rotation + ',scale=' + event.scale + ')';
-                if(event.rotation>0&&event.rotation<45){
-
-                }
-                
-                break;
-            }
-            case "gestureend":{
-                touchState=true;
-                return;
-                break;
-            }
-        }
+    function gesture(event){
+        touchState=true;
+        return;
     }
+//    function gesture(event) {
+//        document.getElementById('event').innerHTML=event.type;
+//        document.getElementById('ev').innerHTML=event.type;
+//        state=event.type;
+//        switch(event.type){
+//            case "gesturestart":{
+//                touchState=false;
+//                break;
+//            }
+//            case "gesturechange":{
+//                event.preventDefault();
+//                document.getElementById('ev').innerHTML="gesture start (rotation=" + event.rotation + ',scale=' + event.scale + ')';
+//                if(event.rotation>0&&event.rotation<45){
+//
+//                }
+//
+//                break;
+//            }
+//            case "gestureend":{
+//                touchState=true;
+//                return;
+//                break;
+//            }
+//        }
+//    }
 
     function touch(event) {
             if (touchState) {
@@ -103,22 +107,22 @@
                         ydy = clipImg.offsetTop - (gdy - event.changedTouches[0].clientY);
 
                         if (clipImg.offsetLeft > circleX && ydx >= clipImg.offsetLeft) {
-                            // ydx=circleX;
+                             ydx=circleX;
                             return;
                         }
                         if (clipImg.width + clipImg.offsetLeft < circleX + circleRadius * 2 && ydx <= clipImg.offsetLeft) {
-                            // ydx=-(clipImg.width-(circleX+circleRadius*2));
+                             ydx=-(clipImg.width-(circleX+circleRadius*2));
                             return;
                         }
                         clipImg.style.left = ydx + "px";
                         gdx = event.changedTouches[0].clientX;
 
                         if (clipImg.offsetTop > circleY && ydy >= clipImg.offsetTop) {
-                            // ydy=circleY;
+                             ydy=circleY;
                             return;
                         }
                         if (clipImg.height + clipImg.offsetTop < circleY + circleRadius * 2 && ydy <= clipImg.offsetTop) {
-                            // ydy=-(clipImg.height-(circleY+circleRadius*2));
+                             ydy=-(clipImg.height-(circleY+circleRadius*2));
                             return;
                         }
                         clipImg.style.top = ydy + "px";

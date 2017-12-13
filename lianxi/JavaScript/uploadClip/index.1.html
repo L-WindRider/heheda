@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>touch.js demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/touch.min.js"></script>
+    <script type="text/javascript" src="js/cat.touchjs.js"></script>
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <style>
+        body {margin: 0;}
+        .clip{display: none;}
+        .posiFixed {position: fixed;width: 100%;top: 0;left: 0;}
+    </style>
+</head>
+<body>
+        <input type="file" id="upload" accept="image/png,image/jpeg">
+    <div id="clip" class="clip">
+        <img id="clipImg" class="clipImg posiFixed" />
+        <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
+    </div>
+
+    <ul style="position:fixed;bottom:0">
+        <li>
+            <span>left：</span>
+            <span id="left">0</span>
+        </li>
+        <li>
+            <span>top：</span>
+            <span id="top">0</span>
+        </li>
+        <li>
+            <span>scale：</span>
+            <span id="scale">1</span>
+        </li>
+        <li>
+            <span>rotate：</span>
+            <span id="rotate">0</span>
+        </li>
+    </ul>
+    <div>
+        <input type="button" value="重置" onclick="reset()" />
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            var upload = document.getElementById("upload");//上传图片input按钮
+            var  clipImg= $('#clipImg');
+            var clipImgCover = $('#clipImgCover');
+            upload.onchange = function () {
+                var file = upload.files[0];
+                if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+                    alert('不是有效的图片');
+                    console.log(file.type);
+                    return;
+                }
+                $('#clip').show();
+                $(clipImg).attr("src",window.URL.createObjectURL(upload.files[0]));
+                // $(clipImgCover).css("top",(window.innerHeight-window.innerWidth*2)/2+"px");
+            }
+
+            //初始化设置
+            cat.touchjs.init(clipImgCover,clipImg, function (left, top, scale, rotate) {
+                $('#left').text(left);
+                $('#top').text(top);
+                $('#scale').text(scale);
+                $('#rotate').text(rotate);
+                clipImg.css({
+                    left: left,
+                    top: top,
+                    'transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)',
+                    '-webkit-transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)'
+                });
+            });
+            //初始化拖动手势（不需要就注释掉）
+            cat.touchjs.drag(clipImgCover,clipImg, function (left, top) {
+                $('#left').text(left);
+                $('#top').text(top);
+            });
+            //初始化缩放手势（不需要就注释掉）
+            cat.touchjs.scale(clipImgCover,clipImg, function (scale) {
+                $('#scale').text(scale);
+            });
+        });
+        //重置
+        function reset() {
+            var data = {
+                left: 0,
+                top: 0,
+                scale: 1,
+                rotate: 0
+            };
+        };
+    </script>
+</body>
+
+</html>

@@ -8,11 +8,15 @@
     <script type="text/javascript" src="js/touch.min.js"></script>
     <script type="text/javascript" src="js/cat.touchjs.js"></script>
     <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/common.js?v=1"></script>
     <style>
         body {margin: 0;}
         .clip{display: none;}
         .posiFixed {position: fixed;width: 100%;top: 0;left: 0;}
         .clipDivCover{height: 100%;}
+        .clipTitle{width: 15vw;height: 15vw;}
+        #clipConfirm{left:85vw;}
+
     </style>
 </head>
 <body>
@@ -20,9 +24,12 @@
     <div id="clip" class="clip">
         <img id="clipImg" class="clipImg posiFixed" />
         <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
+        <img class="posiFixed" src="images/cutTitle.png" />
         <div id="clipDivCover" class="posiFixed clipDivCover"></div>
+        <div id="clipClose" class="posiFixed clipTitle"></div>
+        <div id="clipConfirm" class="posiFixed clipTitle"></div>
     </div>
-
+    <canvas id="canvas"></canvas>
     <ul style="position:fixed;bottom:0">
         <li>
             <span>left：</span>
@@ -42,7 +49,6 @@
         </li>
     </ul>
     <div>
-        <input type="button" value="重置" onclick="reset()" />
     </div>
     </div>
     <script type="text/javascript">
@@ -70,12 +76,16 @@
                     if ($(clipImg).height() > 0) {
                        clipImgW = $(clipImg).width();
                        clipImgH = $(clipImg).height();
+                       cat.touchjs.deviation=(window.innerHeight-clipImgH)/2;
+                       $(clipImg).css("top",cat.touchjs.deviation+"px");
+                       cat.touchjs.top=cat.touchjs.deviation;
                        console.log(clipImgW, clipImgH);
                        clearInterval(setInt);
                    }
                 },200)
                
                 $(clipImgCover).css("top",(window.innerHeight-window.innerWidth*2)/2+"px");
+                alert((window.innerHeight-window.innerWidth*2)/2);
             }
 
             //初始化设置
@@ -100,16 +110,43 @@
             cat.touchjs.scale(clipDivCover,clipImg, function (data) {
                 $('#scale').text(data.scaleVal);
             });
+            //重置
+            function Reset(){
+                cat.touchjs.left=0;
+                cat.touchjs.top=0;
+                cat.touchjs.scaleVal=1;
+                cat.touchjs.curStatus=0;
+                cat.touchjs.deviation=0;
+                cat.touchjs.ydx=0;
+                cat.touchjs.ydy=0;
+                clipImg.css("transform", 'scale('+ cat.touchjs.scaleVal+')').css("left", cat.touchjs.ydx).css("top", cat.touchjs.ydy);
+                clipImg.attr("src","");
+            }
+
+            $('#clipClose').click(function(){
+                Reset();
+                $('#clip').hide();
+            });
+            $('#clipConfirm').click(function(){
+                // var canvas = document.createElement('canvas');
+                var canvas = document.getElementById('canvas');
+                var Img = new Image();
+                Img.src = clipImg.get(0).src;
+                console.log(Img.width,Img.height);
+                canvas.width = circleRadius*2;
+                canvas.height = circleRadius*2;
+                // canvas.width = Img.width/2;
+                // canvas.height =Img.height/2;
+                var ctx = canvas.getContext('2d');
+                // ctx.drawImage(clipImg.get(0), Img.width/clipImgW*circleX+(clipImgW*cat.touchjs.scaleVal-clipImgW)/2,Img.height/clipImgH*circleY+(clipImgH*cat.touchjs.scaleVal-clipImgH)/2, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
+                // ctx.drawImage(clipImg.get(0),Img.width/2-circleRadius*cat.touchjs.scaleVal/2,Img.height/2-circleRadius*cat.touchjs.scaleVal/2, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
+                ctx.drawImage(clipImg.get(0),Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
+                // resimg.src = canvas.toDataURL("image/png");
+                Reset();
+                $('#clip').hide();
+            });
         });
-        //重置
-        function reset() {
-            var data = {
-                left: 0,
-                top: 0,
-                scale: 1,
-                rotate: 0
-            };
-        };
+       
     </script>
 </body>
 

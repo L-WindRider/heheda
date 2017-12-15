@@ -51,6 +51,7 @@
     <div>
     </div>
     </div>
+
     <script type="text/javascript">
     var circleRadius = window.innerWidth*560/750/2;//原型半径
     var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
@@ -85,7 +86,6 @@
                 },200)
                
                 $(clipImgCover).css("top",(window.innerHeight-window.innerWidth*2)/2+"px");
-                alert((window.innerHeight-window.innerWidth*2)/2);
             }
 
             //初始化设置
@@ -135,13 +135,9 @@
                 console.log(Img.width,Img.height);
                 canvas.width = circleRadius*2;
                 canvas.height = circleRadius*2;
-                // canvas.width = Img.width/2;
-                // canvas.height =Img.height/2;
                 var ctx = canvas.getContext('2d');
-                // ctx.drawImage(clipImg.get(0), Img.width/clipImgW*circleX+(clipImgW*cat.touchjs.scaleVal-clipImgW)/2,Img.height/clipImgH*circleY+(clipImgH*cat.touchjs.scaleVal-clipImgH)/2, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
-                // ctx.drawImage(clipImg.get(0),Img.width/2-circleRadius*cat.touchjs.scaleVal/2,Img.height/2-circleRadius*cat.touchjs.scaleVal/2, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
+                // ctx.drawImage(clipImg.get(0),Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);//原始图片的像素值
                 ctx.drawImage(clipImg.get(0),Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
-                // resimg.src = canvas.toDataURL("image/png");
                 Reset();
                 $('#clip').hide();
             });

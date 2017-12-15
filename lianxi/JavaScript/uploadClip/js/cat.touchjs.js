@@ -1,7 +1,4 @@
-﻿/*
-* author: www.somethingwhat.com
-*/
-var cat = window.cat || {};
+﻿var cat = window.cat || {};
 cat.touchjs = {
     left: 0,
     top: 0,

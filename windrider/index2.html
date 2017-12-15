@@ -1,150 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <title></title>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-    <script src="js/windrider.js"></script>
-    <style>
-    body{margin: 0;}
-    .posiFixed{position:fixed;width: 100%;top: 0;left: 0;}
-    .clipImg{display: none;}
-    .clipCoverImg{left: 100%;top:-73.5px}
-    .clipCoverDiv{height: 100%;display: none;}
-    .clip .clipImg{display: block;}
-    .clip .clipCoverImg{left: 0;}
-    .clip .clipCoverDiv{display: block;}
-    p{color: #FFF;}
-    </style>
+    <meta charset="utf-8" />
+    <title>金舜游戏</title>
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
+    <meta http-equiv="expires" content="0" />
+    <meta name="laya" screenorientation="landscape" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <script type="text/javascript" src="js/zepto.js?v=1"></script>
+    <script type="text/javascript" src="js/common.js?v=1"></script>
+    <script type="text/javascript" src="js/touch.min.js"></script>
+    <script type="text/javascript" src="js/cat.touchjs.js"></script>
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<div id="clip">
-        <input type="file" id="upload" accept="image/png,image/jpeg">
+
+<body>
+    <script type="text/javascript">
+        document.write('<script type="text/javascript" src="js/config.js?v=' + new Date().getTime() + '"><\/script>');
+    </script>
+    <div>
+        <script type="text/javascript" src="Main.max.js" loader="laya"></script>
+    </div>
+    <div id="loading">
+        <div>
+            <p>
+                <span id="bar"></span>
+            </p>
+        </div>
+    </div>
+    <input type="file" id="upload" accept="image/png,image/jpeg">
+    <div id="clip" class="clip">
         <img id="clipImg" class="clipImg posiFixed" />
-        <img id="clipCoverImg" class="clipCoverImg posiFixed" src="images/cover.png" />
-        <div id="clipCoverDiv" class="clipCoverDiv posiFixed"></div>
-        <p id="event" class="posiFixed"></p>
-        <p id="ev" class="posiFixed"></p>
-</div>
-<body id="body">
-<script>
-    var clip = document.getElementById("clip");//父级
-    var upload = document.getElementById("upload");//上传图片input按钮
-    var clipImg = document.getElementById("clipImg");//剪裁图片
-    var clipCoverImg = document.getElementById("clipCoverImg");//剪裁遮盖
-    var clipCoverDiv = document.getElementById("clipCoverDiv");//滑动触发div
-    var circleRadius = window.innerWidth*560/750/2;//原型半径
-    var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
-    var circleY=window.innerHeight/2-circleRadius;//圆形Y坐标
-    var touchState=true;//touch事件是否执行
+        <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
+        <img class="posiFixed" src="images/cutTitle.png" />
+        <div id="clipDivCover" class="posiFixed clipDivCover"></div>
+        <div id="clipClose" class="posiFixed clipTitle"></div>
+        <div id="clipConfirm" class="posiFixed clipTitle"></div>
+    </div>
+    <script type="text/javascript">
+        cfg.isClearLS && localStorage.clear();
+        var unionid = localStorage.getItem("UNIONID");
 
-    upload.onchange = function () {
-        var file = upload.files[0];
-        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
-            alert('不是有效的图片');
-            console.log(file.type);
-            return;
-        }
-        clip.className="clip";
-        clipImg.src=window.URL.createObjectURL(upload.files[0]);
-        // clipCoverImg.style.top=(window.innerHeight-window.innerWidth*2)/2+"px";
-    }
-
-    clipCoverDiv.addEventListener('touchstart',touch, false);//一个手指触摸
-    clipCoverDiv.addEventListener('touchmove',touch, false);//一个手指移动
-    clipCoverDiv.addEventListener('touchend',touch, false);//一个手指离开
-
-    clipCoverDiv.addEventListener('gesturestart',gesture, false);//另一个手指触摸
-    clipCoverDiv.addEventListener('gesturechange',gesture, false);//任何一个手指移动
-    clipCoverDiv.addEventListener('gestureend',gesture, false);//任何一个手指离开
-
-    var gdx,gdy,ydx,ydy;//定义原始x、y and 移动x、y
-   // var  gesx, gesy,ydx,ydy;//定义原始x、y and 移动x、y
-
-    var state;//定义执行进度
-    function gesture(event){
-        touchState=true;
-        return;
-    }
-//    function gesture(event) {
-//        document.getElementById('event').innerHTML=event.type;
-//        document.getElementById('ev').innerHTML=event.type;
-//        state=event.type;
-//        switch(event.type){
-//            case "gesturestart":{
-//                touchState=false;
-//                break;
-//            }
-//            case "gesturechange":{
-//                event.preventDefault();
-//                document.getElementById('ev').innerHTML="gesture start (rotation=" + event.rotation + ',scale=' + event.scale + ')';
-//                if(event.rotation>0&&event.rotation<45){
-//
-//                }
-//
-//                break;
-//            }
-//            case "gestureend":{
-//                touchState=true;
-//                return;
-//                break;
-//            }
-//        }
-//    }
-
-    function touch(event) {
-            if (touchState) {
-                var event = event || window.event;
-                document.getElementById('event').innerHTML = event.type;
-                state = event.type;
-                switch (event.type) {
-                    case "touchstart": {
-                        gdx = event.touches[0].clientX;
-                        gdy = event.touches[0].clientY;
-                        break;
+        function ajax(url, data, cb) {
+            $.ajax({
+                url: url,
+                type: "post",
+                data: data || {},
+                success: function (res) {
+                    if (res.code == 0 && res.map) {
+                        cb && cb(res.map);
+                    } else {
+                        alert(res.msg || "Error");
                     }
-                    case "touchmove": {
-                        ydx = clipImg.offsetLeft - (gdx - event.changedTouches[0].clientX);
-                        ydy = clipImg.offsetTop - (gdy - event.changedTouches[0].clientY);
-
-                        if (clipImg.offsetLeft > circleX && ydx >= clipImg.offsetLeft) {
-                             ydx=circleX;
-                            return;
-                        }
-                        if (clipImg.width + clipImg.offsetLeft < circleX + circleRadius * 2 && ydx <= clipImg.offsetLeft) {
-                             ydx=-(clipImg.width-(circleX+circleRadius*2));
-                            return;
-                        }
-                        clipImg.style.left = ydx + "px";
-                        gdx = event.changedTouches[0].clientX;
-
-                        if (clipImg.offsetTop > circleY && ydy >= clipImg.offsetTop) {
-                             ydy=circleY;
-                            return;
-                        }
-                        if (clipImg.height + clipImg.offsetTop < circleY + circleRadius * 2 && ydy <= clipImg.offsetTop) {
-                             ydy=-(clipImg.height-(circleY+circleRadius*2));
-                            return;
-                        }
-                        clipImg.style.top = ydy + "px";
-                        gdy = event.changedTouches[0].clientY;
-                        event.preventDefault();
-                        break;
-                    }
-                    case "touchend": {
-                        break;
-                    }
-                    case "gesturechange": {
-                        document.getElementById('ev').innerHTML = event.changedTouches[0].clientX + "," + event.changedTouches[0].clientY;
-                        break;
-                    }
+                },
+                error: function (xhr, errorType, error) {
+                    console.log(xhr);
+                    $.toast('数据出错，请稍后重试');
                 }
+            });
+        };
+
+        function getCode(code) {
+            ajax("http://47.94.110.231/account/account/getunionid", { code: code }, function (res) {
+                var map = res.userInfo;
+                unionid = map.unionid;
+                localStorage.setItem("UNIONID", unionid);
+                init();
+            });
+        };
+        unionid = "8888";
+        if (unionid && unionid.length) {
+            init();
+        } else {
+            var code = $.getQuery("code");
+            var last = localStorage.getItem("CODE");
+            if (code && code != last) {
+                localStorage.setItem("CODE", code);
+                getCode(code);
+            } else {
+                $.goto('https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + cfg.appid + '&redirect_uri=' + encodeURIComponent(window.location.href) + '&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect');
+            }
+        };
+
+        /**********************剪裁上传头像******************/
+        var winW = window.innerWidth;
+        var winH = window.innerHeight;
+        var circleRadius = winW * 560 / 750 / 2;//原型半径
+        var circleX = winW / 2 - circleRadius;//圆形X坐标
+        var circleY = winH / 2 - circleRadius;//圆形Y坐标
+        var clipImgW;//图片原始宽度
+        var clipImgH;//图片原始高度
+        $(function () {
+            var upload = document.getElementById("upload");//上传图片input按钮
+            var clipImg = $('#clipImg');
+            var clipImgCover = $('#clipImgCover');
+            var clipDivCover = $('#clipDivCover');
+            upload.onchange = function () {
+                var file = upload.files[0];
+                if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+                    alert('不是有效的图片');
+                    console.log(file.type);
+                    return;
+                }
+                $('#clip').show();
+                $(clipImg).attr("src", window.URL.createObjectURL(upload.files[0]));
+                var setInt = setInterval(function () {
+                    if ($(clipImg).height() > 0) {
+                        clipImgW = $(clipImg).width();
+                        clipImgH = $(clipImg).height();
+                        cat.touchjs.deviation = (winH - clipImgH) / 2;
+                        $(clipImg).css("top", cat.touchjs.deviation + "px");
+                        cat.touchjs.top = cat.touchjs.deviation;
+                        console.log(clipImgW, clipImgH);
+                        clearInterval(setInt);
+                    }
+                }, 200)
+
+                $(clipImgCover).css("top", (winH - winW * 2) / 2 + "px");
             }
 
+            //初始化设置
+            cat.touchjs.init(clipDivCover, clipImg, function (left, top, scale, rotate) {
+                $('#left').text(left);
+                $('#top').text(top);
+                $('#scale').text(scale);
+                $('#rotate').text(rotate);
+                clipImg.css({
+                    left: left,
+                    top: top,
+                    'transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)',
+                    '-webkit-transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)'
+                });
+            });
+            //初始化拖动手势（不需要就注释掉）
+            cat.touchjs.drag(clipDivCover, clipImg, function (data) {
+            });
+            //初始化缩放手势（不需要就注释掉）
+            cat.touchjs.scale(clipDivCover, clipImg, function (data) {
+            });
+            //重置
+            function Reset() {
+                cat.touchjs.left = 0;
+                cat.touchjs.top = 0;
+                cat.touchjs.scaleVal = 1;
+                cat.touchjs.curStatus = 0;
+                cat.touchjs.deviation = 0;
+                cat.touchjs.ydx = 0;
+                cat.touchjs.ydy = 0;
+                clipImg.css("transform", 'scale(' + cat.touchjs.scaleVal + ')').css("left", cat.touchjs.ydx).css("top", cat.touchjs.ydy);
+                clipImg.attr("src", "");
+            }
 
-
-        }
-</script>
-
+            $('#clipClose').click(function () {
+                Reset();
+                $('#clip').hide();
+            });
+            $('#clipConfirm').click(function () {
+                var canvas = document.createElement('canvas');
+                // var canvas = document.getElementById('canvas');
+                var Img = new Image();
+                Img.src = clipImg.get(0).src;
+                console.log(Img.width, Img.height);
+                canvas.width = circleRadius * 2;
+                canvas.height = circleRadius * 2;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(clipImg.get(0), Img.width / 2 - (circleRadius + cat.touchjs.left) * Img.width / clipImgW / cat.touchjs.scaleVal, Img.height / 2 - (circleRadius + cat.touchjs.top - cat.touchjs.deviation) * Img.height / clipImgH / cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW * cat.touchjs.scaleVal, clipImgH * cat.touchjs.scaleVal);
+                window.callAs("upload", canvas.toDataURL("image/jpeg"));
+                Reset();
+                $('#clip').hide();
+            });
+        });
+    </script>
+    <script type="text/javascript" src="js/base64.js?v=1"></script>
 </body>
 
 </html>

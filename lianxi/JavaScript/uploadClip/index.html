@@ -137,7 +137,7 @@
                 canvas.height = circleRadius*2;
                 var ctx = canvas.getContext('2d');
                 // ctx.drawImage(clipImg.get(0),Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);//原始图片的像素值
-                ctx.drawImage(clipImg.get(0),Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
+                ctx.drawImage(Img,Img.width/2-(circleRadius+cat.touchjs.left)*Img.width/clipImgW/cat.touchjs.scaleVal,Img.height/2-(circleRadius+cat.touchjs.top-cat.touchjs.deviation)*Img.height/clipImgH/cat.touchjs.scaleVal, Img.width, Img.height, 0, 0, clipImgW*cat.touchjs.scaleVal, clipImgH*cat.touchjs.scaleVal);
                 Reset();
                 $('#clip').hide();
             });

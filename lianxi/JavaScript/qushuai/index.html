@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>touch.js demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/zepto.js"></script>
+	<style>
+	body{margin:0}
+	</style>
+</head>
+<body>
+    <select id="select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
+    <script type="text/javascript">
+    $('#select').change(function(){
+       alert($(this).val());
+    })
+    </script>
+</body>
+</html>

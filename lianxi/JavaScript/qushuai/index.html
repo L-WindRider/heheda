@@ -1,28 +1,51 @@
 ﻿<!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
     <title>touch.js demo</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="text/javascript" src="js/zepto.js"></script>
-	<style>
-	body{margin:0}
-	</style>
+    <style>
+
+    </style>
 </head>
+
 <body>
-    <select id="select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-    </select>
+    <ul id="ul">
+        <li>
+            <p>1</p>
+            <ul>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+            </ul>
+        </li>
+        <li>
+            <p>2</p>
+            <ul>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+            </ul>
+        </li>
+        <li>
+            <p>3</p>
+        </li>
+    </ul>
     <script type="text/javascript">
-    $('#select').change(function(){
-       alert($(this).val());
-    })
+        var obj = {};
+        obj.button = [];
+        $('#ul').children('li').each(function (i) {
+            obj.button.push({name: $(this).children('p').text()});
+            obj.button[i].sub_button = [];
+            $(this).children('ul').children('li').each(function (index) {
+                obj.button[i].sub_button.push({name: $(this).text()});
+            })
+        })
+        console.log(obj);
     </script>
+
 </body>
+
 </html>

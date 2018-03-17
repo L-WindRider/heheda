@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<script type="text/javascript">  
+    function copyUrl2(){  
+      var Url2=document.getElementById("biao1");  
+      Url2.select(); // 选择对象
+      Url2.setSelectionRange(0, Url2.value.length);
+      document.execCommand("Copy"); // 执行浏览器复制命令  
+    }
+    </script>  
+    <textarea readonly="" cols="20" rows="10" id="biao1">用户定义的代码区域</textarea>
+    <textarea readonly="" style="font-size: 12pt; border: 0px; padding: 0px; margin: 0px; position: absolute; left: -9999px; top: 0px;"></textarea>
+    <input type="button" onClick="copyUrl2()" value="点击复制代码" /> 
+</body>
+</html>

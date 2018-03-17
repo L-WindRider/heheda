@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-        <input type="file" id="upload" accept="image/png,image/jpeg">
+        <input type="file" id="upload" accept="image/*">
     <div id="clip" class="clip">
         <img id="clipImg" class="clipImg posiFixed" />
         <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
@@ -50,6 +50,7 @@
             var clipImgCover = $('#clipImgCover');
             upload.onchange = function () {
                 var file = upload.files[0];
+                alert(file.type)
                 if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
                     alert('不是有效的图片');
                     console.log(file.type);

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>touch.js demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/zepto.js"></script>
+</head>
+<body>
+    <ul id="ul">
+        <li>
+            <p>11</p>
+            <input type="text" value="12">
+        </li>
+        <li>
+            <p>21</p>
+            <input type="text" value="22">
+        </li>
+    </ul>
+    <script type="text/javascript">
+        var obj = {};//定义一个对象obj
+        obj.arr = [];//定义obj的arr为一个空的数组
+        $('#ul li').each(function (i) {
+            obj.arr.push({
+                id:$(this).children("p").text(),
+                score:$(this).children("input").val(),
+            });
+        })
+        console.log(obj);
+    </script>
+
+</body>
+
+</html>

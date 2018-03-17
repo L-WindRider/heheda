@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+    <textarea id="textarea"></textarea>
+    <button onclick="qwe()">获取光标</button>
+    <script>
+      alert(document.execCommand("paste"));
+   function qwe(){
+    document.getElementById('textarea').focus();
+    document.execCommand("paste"); // 执行浏览器复制命令
+   }
+    </script>
+</body>
+</html>

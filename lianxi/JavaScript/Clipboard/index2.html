@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+</head>
+<body>
+<script type="text/javascript">
+var Url2;
+    function copyUrl2(str,state){
+      if(!Url2){
+        Url2=document.createElement("textarea");
+        document.body.appendChild(Url2);
+        // Url2.setAttribute('readonly', '');
+      }
+      Url2.value=str;
+      Url2.select(); // 选择对象
+      Url2.setSelectionRange(0, Url2.value.length);
+      if(state=="Copy"){
+        document.execCommand("Copy"); // 执行浏览器复制命令
+      }else if('paste'){
+        Url2.focus();
+        document.execCommand("paste"); // 执行浏览器复制命令  
+      }
+    };
+
+    </script>  
+    <input type="button" onClick="copyUrl2('123456')" value="点击复制代码" />
+    <div onClick="copyUrl2('123456','Copy')">点击复制代码</div>
+    <canvas id="canvas" width="50" height="50"></canvas>
+    <div id="layaCanvas"></div>
+    <button onclick="copyUrl2('123456','paste')">粘贴</button>
+    <script>
+    document.getElementById('canvas').onclick=function(){
+      copyUrl2('qweweewrewtrtrwt');
+    }
+    </script>
+    <script type="text/javascript">
+      var copyStr = { textarea: null, state: false, str: "" };
+        document.getElementById('layaCanvas').onclick = function () {
+          setTimeout(function () {
+            if (copyStr.state) {
+              if (!copyStr.textarea) {
+                copyStr.textarea = document.createElement("textarea");
+                document.body.appendChild(copyStr.textarea);
+                copyStr.textarea.setAttribute('readonly', '');
+              }
+              copyStr.textarea.value = copyStr.str;
+              copyStr.textarea.select(); 
+              copyStr.textarea.setSelectionRange(0, copyStr.textarea.value.length);
+              document.execCommand("Copy") && alert('复制成功!');
+              copyStr.state = false;
+            }
+          }, 500);
+        }
+      </script> 
+</body>
+</html>

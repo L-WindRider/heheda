@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<script src="js/clipboard.js"></script>
+<script src="js/zepto.min.js"></script>
+</head>
+<body>
+<!-- Trigger -->
+<button class="btn" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
+    Copy to clipboard
+</button>
+<button onclick="Copy()">模拟点击</button>
+<input type="text">
+<script>
+    function Copy(){
+        var div=document.createElement("div");
+        div.id="btn";
+        document.body.appendChild(div);
+        new Clipboard('#btn',{
+            text:function(trigger) {
+             return "qwe";   
+            }
+        });
+        setTimeout(function(){
+            document.getElementById('btn').click();
+        },1000);
+    }
+</script>
+<script type="text/javascript">  
+    function copyUrl2()  
+    {  
+      var Url2=document.getElementById("biao1");  
+      Url2.select(); // 选择对象  
+      document.execCommand("Copy"); // 执行浏览器复制命令  
+      alert("已复制好，可贴粘。");  
+    }  
+    </script>  
+    <textarea cols="20" rows="10" id="biao1">用户定义的代码区域</textarea>  
+    <input type="button" onClick="copyUrl2()" value="点击复制代码" /> 
+</body>
+</html>

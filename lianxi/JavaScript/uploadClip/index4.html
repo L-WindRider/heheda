@@ -51,7 +51,7 @@
     </div>
     <canvas id="canvas"></canvas>
     </div>
-<div><img id="qwer" src="" alt="" srcset=""></div>
+
     <script type="text/javascript">
         $(function () {
             var upload = document.getElementById("upload");//上传图片input按钮
@@ -103,8 +103,9 @@
                 $('#clip').hide();
             });
             $('#clipConfirm').click(function () {
-                // var canvas = document.createElement('canvas');
-                var canvas = document.getElementById('canvas');
+                var canvas = document.createElement('canvas');
+                canvas = document.getElementById('canvas');
+                canvas.width=canvas.height= uploadClip.circleDiameter*10;
                 var ctx = canvas.getContext('2d');
                 EXIF.getData(uploadImg, function () {
                     EXIF.getAllTags(uploadImg);
@@ -113,37 +114,49 @@
                     var ctxObj={
                         rotate:0,//旋转的角度
                         img:uploadImg,//使用的图片
+                        sx:uploadImg.width / 2 - (uploadClip.circleRadius + uploadClip.left) * uploadImg.width / uploadClip.clipImgW / uploadClip.scaleVal,//开始剪切的X坐标位置
+                        sy:uploadImg.height / 2 - (uploadClip.circleRadius + uploadClip.top - uploadClip.deviation) * uploadImg.height / uploadClip.clipImgH / uploadClip.scaleVal,//开始剪切的Y坐标位置
                         sw:uploadImg.width,//被剪切图像的宽度
                         sh:uploadImg.height,//被剪切图像的高度
+                        x:0,//在画布上放置图像的X坐标位置
+                        y:0,//在画布上放置图像的Y坐标位置
+                        width:uploadClip.clipImgW * uploadClip.scaleVal,//要使用的图像的宽度--伸展或缩小图像
+                        height:uploadClip.clipImgH * uploadClip.scaleVal//要使用的图像的高度--伸展或缩小图像
                     }
-                    console.log(Orientation)
+                    ctxObj={"rotate":0,"img":uploadImg,"sx":95,"sy":386.86,"sw":750,"sh":1334,"x":0,"y":0,"width":414,"height":736};
+                    console.log(ctxObj);
                     switch (Orientation) {
                         case 6:{ //需要顺旋90°
                             ctxObj.rotate=90;
-                            ctxObj.sw=uploadImg.height;
-                            ctxObj.sh=uploadImg.width;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx=ctxObj.img.height-ctxObj.sy;
+                            ctxObj.sy=ctxObj.img.width-ctxObj.sx-uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
                             break;
                         }
                         case 3:{ //需要顺旋180°
                             ctxObj.rotate=180;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.sy+=uploadClip.circleDiameter;
                             break;
                         }
                         case 8:{ //需要顺旋270°
                             ctxObj.rotate=270;
-                            ctxObj.sw=uploadImg.height;
-                            ctxObj.sh=uploadImg.width;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
                             break;
                         }
                         default: { //(正确显示--1 || 非手机照片 || 又出幺蛾子了)---执行正确显示
                         }
                     }
-                    canvas.width=ctxObj.img.height;
-                    canvas.height=ctxObj.img.width;
-                    ctx.translate(canvas.width/2,canvas.height/2);
+                    console.log(ctxObj);
                     ctx.rotate(ctxObj.rotate*Math.PI/180);
-                    ctx.drawImage(ctxObj.img,-canvas.height/2,-canvas.width/2);
-                    // console.log(canvas.toDataURL("image/jpeg"));
-                    document.getElementById('qwer').src=canvas.toDataURL("image/png");
+                    ctx.drawImage(ctxObj.img, ctxObj.sx, ctxObj.sy,ctxObj.sw,ctxObj.sh, ctxObj.x,ctxObj.y,ctxObj.width,ctxObj.height);
                     Reset();
                 });
                 $('#clip').hide();

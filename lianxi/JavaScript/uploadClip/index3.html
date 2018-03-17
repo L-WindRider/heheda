@@ -1,116 +1,164 @@
 ﻿<!DOCTYPE html>
-<html>
-
+<html lang="zh-cn">
 <head>
-    <title></title>
-    <style type="text/css">
-        #div1 {
-            width: 800px;
-            height: 600px;
-            background-color: #ff0;
-            position: absolute;
+    <title>touch.js demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/touch.min.js"></script>
+    <script type="text/javascript" src="js/uploadClip.js"></script>
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <script type="text/javascript" src="js/exif.js"></script>
+    <style>
+        body {
+            margin: 0;
         }
 
-        .imgRotate {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -50px 0 0 -50px;
+        .clip {
+            display: none;
         }
 
-        #imgRotate {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -50px 0 0 -50px;
+        .posiFixed {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .clipBg{height: 100%;background: #000;}
+        .clipDivCover {
+            height: 100%;
+        }
+
+        .clipTitle {
+            width: 15vw;
+            height: 15vw;
+        }
+
+        #clipConfirm {
+            left: 85vw;
         }
     </style>
 </head>
-
 <body>
-    <div id="div1">
-        <img id="img1" class="imgRotate" src="http://www.baidu.com/img/logo-yy.gif" />
-        <input id="input1" type="button" value="btn1"></input>
+    <input type="file" id="upload" accept="image/*">
+    <div id="clip" class="clip">
+        <div class="posiFixed clipBg"></div>
+        <img id="clipImg" class="clipImg posiFixed" />
+        <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
+        <img class="posiFixed" src="images/cutTitle.png" />
+        <div id="clipDivCover" class="posiFixed clipDivCover"></div>
+        <div id="clipClose" class="posiFixed clipTitle"></div>
+        <div id="clipConfirm" class="posiFixed clipTitle"></div>
     </div>
+    <canvas id="canvas"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            var upload = document.getElementById("upload");//上传图片input按钮
+            var clipImg = $('#clipImg');//需要显示在页面的img
+            var clipDivCover = $('#clipDivCover');//操作的遮盖层
+            var uploadImg;//定义一个变量，用于处理接收上传的图片用
+            $('#clipImgCover').css("top", (window.innerHeight - window.innerWidth * 2) / 2 + "px");
+            upload.onchange = function () {
+                var file = upload.files[0];
+                if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+                    console.log(file.type);
+                    alert('不是有效的图片');
+                    return;
+                }
+                $('#clip').show();
+                uploadImg=new Image();
+                uploadImg.src=window.URL.createObjectURL(upload.files[0]);
+                uploadImg.onload=function(){
+                    $(clipImg).attr("src", uploadImg.src);
+                    uploadClip.clipImgW = $(clipImg).width()/uploadClip.scaleVal;
+                    uploadClip.clipImgH = $(clipImg).height()/uploadClip.scaleVal;
+                    uploadClip.deviation = (window.innerHeight - uploadClip.clipImgH) / 2;
+                    $(clipImg).css("top", uploadClip.deviation + "px");
+                    uploadClip.top = uploadClip.deviation;
+                }
+            }
+
+            //初始化设置
+            uploadClip.init(clipDivCover, clipImg);
+            //初始化拖动手势（不需要就注释掉）
+            uploadClip.drag(clipDivCover, clipImg);
+            //初始化缩放手势（不需要就注释掉）
+            uploadClip.scale(clipDivCover, clipImg);
+            //重置
+            function Reset() {
+                uploadClip.left = 0;
+                uploadClip.top = 0;
+                uploadClip.scaleVal = 1;
+                uploadClip.curStatus = 0;
+                uploadClip.deviation = 0;
+                uploadClip.ydx = 0;
+                uploadClip.ydy = 0;
+                clipImg.css("transform", 'scale(' + uploadClip.scaleVal + ')').css("left", uploadClip.ydx).css("top", uploadClip.ydy);
+                clipImg.attr("src", "");
+            }
+
+            $('#clipClose').click(function () {
+                Reset();
+                $('#clip').hide();
+            });
+            $('#clipConfirm').click(function () {
+                var canvas = document.createElement('canvas');
+                canvas = document.getElementById('canvas');
+                canvas.width=canvas.height= 128;
+                var ctx = canvas.getContext('2d');
+                EXIF.getData(uploadImg, function () {
+                    EXIF.getAllTags(uploadImg);
+                    var Orientation = EXIF.getTag(uploadImg, 'Orientation');
+                    var ctxObj={
+                        rotate:0,//旋转的角度
+                        img:uploadImg,//使用的图片
+                        sx:uploadImg.width / 2 - (uploadClip.circleRadius + uploadClip.left) * uploadImg.width / uploadClip.clipImgW / uploadClip.scaleVal,//开始剪切的X坐标位置
+                        sy:uploadImg.height / 2 - (uploadClip.circleRadius + uploadClip.top - uploadClip.deviation) * uploadImg.height / uploadClip.clipImgH / uploadClip.scaleVal,//开始剪切的Y坐标位置
+                        sw:uploadImg.width,//被剪切图像的宽度
+                        sh:uploadImg.height,//被剪切图像的高度
+                        x:0,//在画布上放置图像的X坐标位置
+                        y:0,//在画布上放置图像的Y坐标位置
+                        width:uploadClip.clipImgW * uploadClip.scaleVal*128/uploadClip.circleDiameter,//要使用的图像的宽度--伸展或缩小图像
+                        height:uploadClip.clipImgH * uploadClip.scaleVal*128/uploadClip.circleDiameter//要使用的图像的高度--伸展或缩小图像
+                    }
+                    console.log(ctxObj);
+                    switch (Orientation) {
+                        case 6:{ //需要顺旋90°
+                            ctxObj.rotate=90;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx=ctxObj.img.height-ctxObj.sy;
+                            ctxObj.sy=ctxObj.img.width-ctxObj.sx-uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
+                            break;
+                        }
+                        case 3:{ //需要顺旋180°
+                            ctxObj.rotate=180;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.sy+=uploadClip.circleDiameter;
+                            break;
+                        }
+                        case 8:{ //需要顺旋270°
+                            ctxObj.rotate=270;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
+                            break;
+                        }
+                        default: { //(正确显示--1 || 非手机照片 || 又出幺蛾子了)---执行正确显示
+                        }
+                    }
+                    ctx.rotate(ctxObj.rotate*Math.PI/180);
+                    ctx.drawImage(ctxObj.img, ctxObj.sx, ctxObj.sy,ctxObj.sw,ctxObj.sh, ctxObj.x,ctxObj.y,ctxObj.width,ctxObj.height);
+                    Reset();
+                });
+                $('#clip').hide();
+            });
+        });
+    </script>
 </body>
-<script type="text/javascript" src="js/zepto.js"></script>
-<script type="text/javascript"> 
-    function rotate(id, angle, whence) {
-        var p = document.getElementById(id);
-
-        // we store the angle inside the image tag for persistence 
-        if (!whence) {
-            p.angle = ((p.angle == undefined ? 0 : p.angle) + angle) % 360;
-        } else {
-            p.angle = angle;
-        }
-
-        if (p.angle >= 0) {
-            var rotation = Math.PI * p.angle / 180;
-        } else {
-            var rotation = Math.PI * (360 + p.angle) / 180;
-        }
-        var costheta = Math.cos(rotation);
-        var sintheta = Math.sin(rotation);
-
-        if (document.all && !window.opera) {
-            var canvas = document.createElement('img');
-
-            canvas.src = p.src;
-            canvas.height = p.height;
-            canvas.width = p.width;
-
-            canvas.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11=" + costheta + ",M12=" + (-sintheta) + ",M21=" + sintheta + ",M22=" + costheta + ",SizingMethod='auto expand')";
-        } else {
-            var canvas = document.createElement('canvas');
-            if (!p.oImage) {
-                canvas.oImage = new Image();
-                canvas.oImage.src = p.src;
-            } else {
-                canvas.oImage = p.oImage;
-            }
-
-            canvas.style.width = canvas.width = Math.abs(costheta * canvas.oImage.width) + Math.abs(sintheta * canvas.oImage.height);
-            canvas.style.height = canvas.height = Math.abs(costheta * canvas.oImage.height) + Math.abs(sintheta * canvas.oImage.width);
-
-            var context = canvas.getContext('2d');
-            context.save();
-            if (rotation <= Math.PI / 2) {
-                context.translate(sintheta * canvas.oImage.height, 0);
-            } else if (rotation <= Math.PI) {
-                context.translate(canvas.width, -costheta * canvas.oImage.height);
-            } else if (rotation <= 1.5 * Math.PI) {
-                context.translate(-costheta * canvas.oImage.width, canvas.height);
-            } else {
-                context.translate(0, -sintheta * canvas.oImage.width);
-            }
-            context.rotate(rotation);
-            context.drawImage(canvas.oImage, 0, 0, canvas.oImage.width, canvas.oImage.height);
-            context.restore();
-        }
-        canvas.id = p.id;
-        canvas.angle = p.angle;
-        p.parentNode.replaceChild(canvas, p);
-    }
-
-    function rotateRight(id, angle) {
-        rotate(id, angle == undefined ? 90 : angle);
-    }
-
-    function rotateLeft(id, angle) {
-        rotate(id, angle == undefined ? -90 : -angle);
-    }
-    $("#input1").click(function () {
-        $("img.imgRotate").attr("id", "imgRotate");
-        rotateLeft("imgRotate", 90);
-        $("#imgRotate").attr("top", "50%");
-        $("#imgRotate").attr("left", "50%");
-        $("#imgRotate").attr("margin", "-50px 0 0 -50px");
-    }); 
-</script>
-
 </html>

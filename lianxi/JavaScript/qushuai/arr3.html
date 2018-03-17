@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <title>touch.js demo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/zepto.js"></script>
+</head>
+<body>
+    <table class="table" border="0" cellspacing="0" cellpadding="0">
+        <tbody><tr>
+            <td width="15%">序号</td>
+            <td width="25%">考核项目</td>
+            <td width="20%">扣分标准</td>
+            <td width="20%">实得/应得</td>
+            <td width="20%">扣分说明</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td class="table-test">项目部管理人员配备及履职情况<input type="hidden" class="id" value="123"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="11">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td class="table-test">项目部管理工作实施情况<input type="hidden" class="id" value="55"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="22">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td class="table-test">项目质量管理<input type="hidden" class="id" value="22"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="33">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td class="table-test">项目安全管理<input type="hidden" class="id" value="44"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="44">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td class="table-test">项目文明施工、环保及职业健康管理<input type="hidden" class="id" value="5"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="55">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td class="table-test">项目资料管理<input type="hidden" class="id" value="22"></td>
+            <td><input type="button" value="查看" onclick="viewClick()"></td>
+            <td><input type="tel" class="scoreX" placeholder="点击输入" value="66">
+                <input type="tel" placeholder="点击输入" value=""></td>
+            <td><input type="button" value="查看" onclick="viewClick2()"></td>
+        </tr>
+        <tr>
+            <td colspan="5">总计：98/100</td>
+        </tr>
+    </tbody></table>
+    <script type="text/javascript">
+        var obj = {};//定义一个对象obj
+        obj.arr = [];//定义obj的arr为一个空的数组
+        $('.table tr').each(function (i) {
+            $(this).find(".id").val()&&obj.arr.push({
+                    id:$(this).find(".id").val(),
+                    score:$(this).find(".scoreX").val(),
+                });
+        })
+        console.log(obj);
+    </script>
+
+</body>
+
+</html>

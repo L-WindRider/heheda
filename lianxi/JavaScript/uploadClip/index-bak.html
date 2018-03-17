@@ -9,18 +9,39 @@
     <script type="text/javascript" src="js/zepto.js"></script>
     <script type="text/javascript" src="js/exif.js"></script>
     <style>
-        body {margin: 0;}
-        .clip{display: none;}
-        .posiFixed {position: fixed;width: 100%;top: 0;left: 0;}
-        .clipDivCover{height: 100%;}
-        .clipTitle{width: 15vw;height: 15vw;}
-        #clipConfirm{left:85vw;}
+        body {
+            margin: 0;
+        }
 
+        .clip {
+            display: none;
+        }
+
+        .posiFixed {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        .clipBg{height: 100%;background: #000;}
+        .clipDivCover {
+            height: 100%;
+        }
+
+        .clipTitle {
+            width: 15vw;
+            height: 15vw;
+        }
+
+        #clipConfirm {
+            left: 85vw;
+        }
     </style>
 </head>
 <body>
-        <input type="file" id="upload" accept="image/png,image/jpeg">
+    <input type="file" id="upload" accept="image/*">
     <div id="clip" class="clip">
+        <div class="posiFixed clipBg"></div>
         <img id="clipImg" class="clipImg posiFixed" />
         <img id="clipImgCover" class="clipImgCover posiFixed" src="images/cover.png" />
         <img class="posiFixed" src="images/cutTitle.png" />
@@ -29,40 +50,15 @@
         <div id="clipConfirm" class="posiFixed clipTitle"></div>
     </div>
     <canvas id="canvas"></canvas>
-    <ul style="position:fixed;bottom:0">
-        <li>
-            <span>left：</span>
-            <span id="left">0</span>
-        </li>
-        <li>
-            <span>top：</span>
-            <span id="top">0</span>
-        </li>
-        <li>
-            <span>scale：</span>
-            <span id="scale">1</span>
-        </li>
-        <li>
-            <span>rotate：</span>
-            <span id="rotate">0</span>
-        </li>
-    </ul>
-    <div>
-    </div>
     </div>
 
     <script type="text/javascript">
-    var circleRadius = window.innerWidth*560/750/2;//原型半径
-    var circleX=window.innerWidth/2-circleRadius;//圆形X坐标
-    var circleY=window.innerHeight/2-circleRadius;//圆形Y坐标
-    var clipImgW;//图片最初显示宽度
-    var clipImgH;//图片最初显示高度
-
         $(function () {
             var upload = document.getElementById("upload");//上传图片input按钮
-            var  clipImg= $('#clipImg');
-            var clipImgCover = $('#clipImgCover');
-            var clipDivCover = $('#clipDivCover');
+            var clipImg = $('#clipImg');//需要显示在页面的img
+            var clipDivCover = $('#clipDivCover');//操作的遮盖层
+            var uploadImg;//定义一个变量，用于处理接收上传的图片用
+            $('#clipImgCover').css("top", (window.innerHeight - window.innerWidth * 2) / 2 + "px");
             upload.onchange = function () {
                 var file = upload.files[0];
                 if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
@@ -71,90 +67,97 @@
                     return;
                 }
                 $('#clip').show();
-                $(clipImg).attr("src",window.URL.createObjectURL(upload.files[0]));
-               var setInt=setInterval(function(){
-                    if ($(clipImg).height() > 0) {
-                       clipImgW = $(clipImg).width();
-                       clipImgH = $(clipImg).height();
-                       uploadClip.deviation=(window.innerHeight-clipImgH)/2;
-                       $(clipImg).css("top",uploadClip.deviation+"px");
-                       uploadClip.top=uploadClip.deviation;
-                       clearInterval(setInt);
-                   }
-                },200)
-               
-                $(clipImgCover).css("top",(window.innerHeight-window.innerWidth*2)/2+"px");
+                uploadImg=new Image();
+                uploadImg.src=window.URL.createObjectURL(upload.files[0]);
+                uploadImg.onload=function(){
+                    $(clipImg).attr("src", uploadImg.src);
+                    uploadClip.clipImgW = $(clipImg).width()/uploadClip.scaleVal;
+                    uploadClip.clipImgH = $(clipImg).height()/uploadClip.scaleVal;
+                    uploadClip.deviation = (window.innerHeight - uploadClip.clipImgH) / 2;
+                    $(clipImg).css("top", uploadClip.deviation + "px");
+                    uploadClip.top = uploadClip.deviation;
+                }
             }
 
             //初始化设置
-            uploadClip.init(clipDivCover,clipImg, function (left, top, scale, rotate) {
-                $('#left').text(left);
-                $('#top').text(top);
-                $('#scale').text(scale);
-                $('#rotate').text(rotate);
-                clipImg.css({
-                    left: left,
-                    top: top,
-                    'transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)',
-                    '-webkit-transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)'
-                });
-            });
+            uploadClip.init(clipDivCover, clipImg);
             //初始化拖动手势（不需要就注释掉）
-            uploadClip.drag(clipDivCover,clipImg, function (data) {
-                $('#left').text(data.left);
-                $('#top').text(data.top);
-            });
+            uploadClip.drag(clipDivCover, clipImg);
             //初始化缩放手势（不需要就注释掉）
-            uploadClip.scale(clipDivCover,clipImg, function (data) {
-                $('#scale').text(data.scaleVal);
-            });
+            uploadClip.scale(clipDivCover, clipImg);
             //重置
-            function Reset(){
-                uploadClip.left=0;
-                uploadClip.top=0;
-                uploadClip.scaleVal=1;
-                uploadClip.curStatus=0;
-                uploadClip.deviation=0;
-                uploadClip.ydx=0;
-                uploadClip.ydy=0;
-                clipImg.css("transform", 'scale('+ uploadClip.scaleVal+')').css("left", uploadClip.ydx).css("top", uploadClip.ydy);
-                clipImg.attr("src","");
+            function Reset() {
+                uploadClip.left = 0;
+                uploadClip.top = 0;
+                uploadClip.scaleVal = 1;
+                uploadClip.curStatus = 0;
+                uploadClip.deviation = 0;
+                uploadClip.ydx = 0;
+                uploadClip.ydy = 0;
+                clipImg.css("transform", 'scale(' + uploadClip.scaleVal + ')').css("left", uploadClip.ydx).css("top", uploadClip.ydy);
+                clipImg.attr("src", "");
             }
 
-            $('#clipClose').click(function(){
+            $('#clipClose').click(function () {
                 Reset();
                 $('#clip').hide();
             });
-            $('#clipConfirm').click(function(){
+            $('#clipConfirm').click(function () {
                 // var canvas = document.createElement('canvas');
                 var canvas = document.getElementById('canvas');
-                var Img = new Image();
-                Img.src = clipImg.get(0).src;
-                console.log(Img.width,Img.height);
-                EXIF.getData(Img, function () {
-                    EXIF.getAllTags(Img);
-                   var Orientation = EXIF.getTag(Img, 'Orientation');
-                    alert(Orientation);
-                    switch (Orientation) {
-                        case 6:
-                            break;
-                        case 8:
-                            break;
-                        case 3:
-                            break;
-                        default:
-                    }
-                });
-                canvas.width = circleRadius*2;
-                canvas.height = circleRadius*2;
+                canvas.width=canvas.height= uploadClip.circleDiameter*10;
                 var ctx = canvas.getContext('2d');
-                ctx.drawImage(Img,Img.width/2-(circleRadius+uploadClip.left)*Img.width/clipImgW/uploadClip.scaleVal,Img.height/2-(circleRadius+uploadClip.top-uploadClip.deviation)*Img.height/clipImgH/uploadClip.scaleVal, Img.width, Img.height, 0, 0, clipImgW*uploadClip.scaleVal, clipImgH*uploadClip.scaleVal);
-                Reset();
+                EXIF.getData(uploadImg, function () {
+                    EXIF.getAllTags(uploadImg);
+                    var Orientation = EXIF.getTag(uploadImg, 'Orientation');
+                    var ctxObj={
+                        rotate:0,//旋转的角度
+                        img:uploadImg,//使用的图片
+                        sx:uploadImg.width / 2 - (uploadClip.circleRadius + uploadClip.left) * uploadImg.width / uploadClip.clipImgW / uploadClip.scaleVal,//开始剪切的X坐标位置
+                        sy:uploadImg.height / 2 - (uploadClip.circleRadius + uploadClip.top - uploadClip.deviation) * uploadImg.height / uploadClip.clipImgH / uploadClip.scaleVal,//开始剪切的Y坐标位置
+                        sw:uploadImg.width,//被剪切图像的宽度
+                        sh:uploadImg.height,//被剪切图像的高度
+                        x:0,//在画布上放置图像的X坐标位置
+                        y:0,//在画布上放置图像的Y坐标位置
+                        width:uploadClip.clipImgW * uploadClip.scaleVal,//要使用的图像的宽度--伸展或缩小图像
+                        height:uploadClip.clipImgH * uploadClip.scaleVal//要使用的图像的高度--伸展或缩小图像
+                    }
+                    switch (Orientation) {
+                        case 6:{ //需要顺旋90°
+                            ctxObj.rotate=90;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx=ctxObj.img.height-ctxObj.sy;
+                            ctxObj.sy=ctxObj.img.width-ctxObj.sx-uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
+                            break;
+                        }
+                        case 3:{ //需要顺旋180°
+                            ctxObj.rotate=180;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.y=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.sy+=uploadClip.circleDiameter;
+                            break;
+                        }
+                        case 8:{ //需要顺旋270°
+                            ctxObj.rotate=270;
+                            ctxObj.x=-uploadClip.circleDiameter;
+                            ctxObj.sx+=uploadClip.circleDiameter;
+                            ctxObj.width=ctxObj.height;
+                            ctxObj.height=ctxObj.width;
+                            break;
+                        }
+                        default: { //(正确显示--1 || 非手机照片 || 又出幺蛾子了)---执行正确显示
+                        }
+                    }
+                    ctx.rotate(ctxObj.rotate*Math.PI/180);
+                    ctx.drawImage(ctxObj.img, ctxObj.sx, ctxObj.sy,ctxObj.sw,ctxObj.sh, ctxObj.x,ctxObj.y,ctxObj.width,ctxObj.height);
+                    Reset();
+                });
                 $('#clip').hide();
             });
         });
-       
     </script>
 </body>
-
 </html>

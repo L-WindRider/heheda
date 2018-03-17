@@ -1,9 +1,0 @@
-@charset "utf-8";
-/* CSS Document */
-
-table { border:1px solid #e1e1e1; font-size:14px; line-height:22px; font-family: Arial,"微软雅黑","Helvetica Neue", Helvetica, sans-serif; color:#4f4f4f;}
-td,th{ border-bottom:1px solid #e1e1e1; border-right:1px solid #e1e1e1; padding:10px 0;}
-th { background:#f8f8f8;}
-td{ text-indent:1em;}
-table tr td:last-child,table tr th:last-child{ border-right:0;}
-table tr:last-child td,table tr:last-child th{ border-bottom:0;}

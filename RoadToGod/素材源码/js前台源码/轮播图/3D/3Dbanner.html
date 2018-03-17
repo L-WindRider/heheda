@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3D轮播图</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            list-style-type: none;
+        }
+        .pic3D{
+            perspective: 800px;
+            overflow: hidden;
+            border:1px dashed green;
+        }
+        .pic3D ul{
+            transform-style: preserve-3d;
+            width: 850px;
+            height: 600px;
+            margin:50px auto;
+            position: relative;
+        }
+        .pic3D ul li{
+            position: absolute;
+            margin:auto;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 300px;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            transition:.5s;
+        }
+        .pic3D ul li img{
+            width: 300px;
+            height: 600px;
+        }
+        .pic3D ul li:hover{
+            top:20px;
+        }
+        .li1{
+            transform: translateX(-450px) translateZ(-450px);
+        }
+        .li2{
+            transform: translateX(-300px) translateZ(-300px);
+        }
+        .li3{
+            transform: translateX(-150px) translateZ(-150px);
+        }
+        .li5{
+            transform: translateX(150px) translateZ(-150px);
+        }
+        .li6{
+            transform: translateX(300px) translateZ(-300px);
+        }
+        .li7{
+            transform: translateX(450px) translateZ(-450px);
+        }
+        .pic3D ol{
+            height: 50px;
+            width: 300px;
+            margin:0 auto;
+        }
+        .pic3D ol li{
+            text-align: center;
+            float: left;
+            line-height: 30px;
+            width: 30px;
+            background: rgb(102,217,239);
+            color:white;
+            margin-left: 12px;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        .pic3D ol li:hover{
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="pic3D">
+        <ul onselectstart="return false">
+            <li class="li1"><img src="img/a.jpg"></li>
+            <li class="li2"><img src="img/b.jpg"></li>
+            <li class="li3"><img src="img/c.jpg"></li>
+            <li class="li4"><img src="img/d.jpg"></li>
+            <li class="li5"><img src="img/e.jpg"></li>
+            <li class="li6"><img src="img/f.jpg"></li>
+            <li class="li7"><img src="img/g.jpg"></li>
+        </ul>
+        <div onselectstart="return false">
+            <ol>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+            </ol>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var lis = document.querySelectorAll(".pic3D ul li");
+    console.log(lis);
+    for(var i = 0, length1 = lis.length; i < length1; i++){
+        lis[i].index = i;
+        // console.log(lis[i].index);
+        lis[i].addEventListener("click", changePic);
+    }
+    var lia = document.querySelectorAll(".pic3D ol li");
+    for(var k = 0, length1 = lia.length; k < length1; k++){
+        lia[k].index = k;
+        // console.log(lia[k].index);
+        lia[k].addEventListener("mouseenter", changePic);
+    }
+    function changePic () {
+        var x = this.index - 3;
+        for(var j = 0; j < lis.length; j++){
+            n = j - x;
+            if (n < 0) {
+                n = n + 7;
+            } else if (n > 6) {
+                n = n - 7;
+            }
+            switch (n) {
+                case 0:
+                    lis[j].style.transform = 'translateX(-450px) translateZ(-450px)';
+                    console.log('0');
+                break;
+                case 1:
+                    lis[j].style.transform = 'translateX(-300px) translateZ(-300px)';
+                    console.log('1');
+                break;
+                case 2:
+                    lis[j].style.transform = 'translateX(-150px) translateZ(-150px)';
+                    console.log('2');
+                break;
+                case 3:
+                    lis[j].style.transform = 'translateX(0) translateZ(0)';
+                    for(var i = 0, length1 = lia.length; i < length1; i++){
+                        lia[i].style.background = 'rgb(102,217,239)';
+                    }
+                    lia[j].style.background = 'orange';
+                break;
+                case 4:
+                    lis[j].style.transform = 'translateX(150px) translateZ(-150px)';
+                break;
+                case 5:
+                    lis[j].style.transform = 'translateX(300px) translateZ(-300px)';
+                break;
+                case 6:
+                    lis[j].style.transform = 'translateX(450px) translateZ(-450px)';
+                break;
+                default:
+                break;
+            }
+        }
+        // return false;
+    }
+</script>
+</html>
